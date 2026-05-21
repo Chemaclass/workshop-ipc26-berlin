@@ -5,39 +5,41 @@ on:
   pull_request:
 
 jobs:
-  rock-paper-scissors:
-    name: Rock Paper Scissors (TDD)
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: tdd/rock-paper-scissors
-    steps:
-      - uses: actions/checkout@v4
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.4'
-          coverage: none
-      - run: composer install --no-interaction --prefer-dist
-      - run: composer test
-      - run: composer phpstan
-      - run: composer check-cs
+  # Disabled until workshop kata day — uncomment and fix as part of the exercise.
+  # rock-paper-scissors:
+  #   name: Rock Paper Scissors (TDD)
+  #   runs-on: ubuntu-latest
+  #   defaults:
+  #     run:
+  #       working-directory: tdd/rock-paper-scissors
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: shivammathur/setup-php@v2
+  #       with:
+  #         php-version: '8.4'
+  #         coverage: none
+  #     - run: composer install --no-interaction --prefer-dist
+  #     - run: composer test
+  #     - run: composer phpstan
+  #     - run: composer check-cs
 
-  guess-random-number:
-    name: Guess Random Number (TDD)
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: tdd/guess-random-number
-    steps:
-      - uses: actions/checkout@v4
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.4'
-          coverage: none
-      - run: composer install --no-interaction --prefer-dist
-      - run: composer test
-      - run: composer phpstan
-      - run: composer check-cs
+  # Disabled until workshop kata day — uncomment and fix as part of the exercise.
+  # guess-random-number:
+  #   name: Guess Random Number (TDD)
+  #   runs-on: ubuntu-latest
+  #   defaults:
+  #     run:
+  #       working-directory: tdd/guess-random-number
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: shivammathur/setup-php@v2
+  #       with:
+  #         php-version: '8.4'
+  #         coverage: none
+  #     - run: composer install --no-interaction --prefer-dist
+  #     - run: composer test
+  #     - run: composer phpstan
+  #     - run: composer check-cs
 
   parrot:
     name: Parrot (Refactoring)
@@ -56,19 +58,20 @@ jobs:
       - run: composer phpstan
       - run: composer check-cs
 
-  tennis:
-    name: Tennis (Refactoring)
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: refactoring/tennis
-    steps:
-      - uses: actions/checkout@v4
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.4'
-          coverage: none
-      - run: composer install --no-interaction --prefer-dist
-      - run: composer test
-      - run: composer phpstan
-      - run: composer check-cs
+  # Disabled until workshop kata day — uncomment and fix as part of the exercise.
+  # tennis:
+  #   name: Tennis (Refactoring)
+  #   runs-on: ubuntu-latest
+  #   defaults:
+  #     run:
+  #       working-directory: refactoring/tennis
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: shivammathur/setup-php@v2
+  #       with:
+  #         php-version: '8.4'
+  #         coverage: none
+  #     - run: composer install --no-interaction --prefer-dist
+  #     - run: composer test
+  #     - run: composer phpstan
+  #     - run: composer check-cs
