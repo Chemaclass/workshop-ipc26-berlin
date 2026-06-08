@@ -22,39 +22,17 @@ class TennisGame1 implements TennisGame
         }
     }
 
-    private function getScoreForEqualStanding(int $score): string
-    {
-        return match ($score) {
-            0 => 'Love-All',
-            1 => 'Fifteen-All',
-            2 => 'Thirty-All',
-            default => 'Deuce',
-        };
-    }
-
-
     public function getScore(): string
     {
         if ($this->player1Score === $this->player2Score) {
             return $this->getScoreForEqualStanding($this->player1Score);
         }
 
-        $score = '';
-
         if ($this->player1Score >= 4 || $this->player2Score >= 4) {
-            $minusResult = $this->player1Score - $this->player2Score;
-            if ($minusResult === 1) {
-                $score = 'Advantage player1';
-            } elseif ($minusResult === -1) {
-                $score = 'Advantage player2';
-            } elseif ($minusResult >= 2) {
-                $score = 'Win for player1';
-            } else {
-                $score = 'Win for player2';
-            }
-
-            return $score;
+            return $this->getScoreAboveThree($this->player1Score - $this->player2Score);
         }
+
+        $score = '';
 
         for ($i = 1; $i < 3; $i++) {
             if ($i === 1) {
@@ -78,6 +56,33 @@ class TennisGame1 implements TennisGame
                     break;
             }
         }
+        return $score;
+    }
+
+    private function getScoreForEqualStanding(int $score): string
+    {
+        return match ($score) {
+            0 => 'Love-All',
+            1 => 'Fifteen-All',
+            2 => 'Thirty-All',
+            default => 'Deuce',
+        };
+    }
+
+    private function getScoreAboveThree(int $minusResult): string
+    {
+        $minusResult = $this->player1Score - $this->player2Score;
+
+        if ($minusResult === 1) {
+            $score = 'Advantage player1';
+        } elseif ($minusResult === -1) {
+            $score = 'Advantage player2';
+        } elseif ($minusResult >= 2) {
+            $score = 'Win for player1';
+        } else {
+            $score = 'Win for player2';
+        }
+
         return $score;
     }
 }
