@@ -53,6 +53,23 @@ final class GuessingNumberGameTest extends TestCase
         self::assertSame('You lose! The number was 5', $game->guessNumber(3));
     }
 
+    public function test_player_wins_after_two_guesses(): void
+    {
+        $game = new GuessingNumberGame($this->randomNumberGenerator);
+
+        self::assertSame('Higher', $game->guessNumber(1));
+        self::assertSame('You win!', $game->guessNumber(5));
+    }
+
+    public function test_player_wins_after_three_guesses(): void
+    {
+        $game = new GuessingNumberGame($this->randomNumberGenerator);
+
+        self::assertSame('Higher', $game->guessNumber(1));
+        self::assertSame('Lower', $game->guessNumber(10));
+        self::assertSame('You win!', $game->guessNumber(5));
+    }
+
     public function test_player_loses_after_multiple_guesses(): void
     {
         $game = new GuessingNumberGame($this->randomNumberGenerator);
