@@ -23,4 +23,9 @@ class NorwegianBlueParrot extends Parrot
     {
         return $this->voltage > 0 ? 'Bzzzzzz' : '...';
     }
+
+    private function getBaseSpeedWith(float $voltage): float
+    {
+        return min(24.0, $voltage * $this->getBaseSpeed());
+    }
 }

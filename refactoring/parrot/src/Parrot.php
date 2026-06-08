@@ -19,11 +19,6 @@ abstract class Parrot
 
     abstract public function getCry(): string;
 
-    protected function getBaseSpeedWith(float $voltage): float
-    {
-        return min(24.0, $voltage * $this->getBaseSpeed());
-    }
-
     protected function getLoadFactor(): float
     {
         return 9.0;
