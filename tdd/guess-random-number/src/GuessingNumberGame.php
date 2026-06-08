@@ -10,9 +10,10 @@ final class GuessingNumberGame
 
     private int $attempts = 0;
 
-    private const MAX_ATTEMPTS = 3;
-
-    public function __construct(RandomNumberGeneratorInterface $randomNumberGenerator)
+    public function __construct(
+        RandomNumberGeneratorInterface $randomNumberGenerator,
+        private int $maxAttempts = 3
+    )
     {
         $this->winningNumber = $randomNumberGenerator->generate();
     }
@@ -21,11 +22,11 @@ final class GuessingNumberGame
     {
         $this->attempts++;
 
-        if ($number === $this->winningNumber && $this->attempts <= self::MAX_ATTEMPTS) {
+        if ($number === $this->winningNumber && $this->attempts <= $this->maxAttempts) {
             return 'You win!';
         }
 
-        if ($this->attempts >= self::MAX_ATTEMPTS) {
+        if ($this->attempts >= $this->maxAttempts) {
             return "You lose! The number was {$this->winningNumber}";
         }
 
