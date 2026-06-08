@@ -6,11 +6,13 @@ namespace Kata;
 
 final class GuessingGame
 {
- 
-    
-    public function __construct(private int $systemNumber=5)  {
-        
+    private int $systemNumber;
+
+    public function __construct(RandomNumberGenerator $randomNumberGenerator)
+    {
+        $this->systemNumber = $randomNumberGenerator->generate();
     }
+
     public function playRound(int $guess): bool
     {
         return true;
