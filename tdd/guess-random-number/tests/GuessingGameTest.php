@@ -114,4 +114,23 @@ final class GuessingGameTest extends TestCase
         $result = $game->playRound(7);
         self::assertSame('You guessed too high', $result);
     }
+
+      public function test_Guess_Number_More_Than_X_Attempts(): void
+    {
+        $mock = $this->setupDependency(6);
+
+       $game = $this->setupGame($mock, 4);
+
+        $result = $game->playRound(5);
+        self::assertSame('You guessed too low', $result);
+
+        $result = $game->playRound(5);
+        self::assertSame('You guessed too low', $result);
+
+        $result = $game->playRound(5);
+        self::assertSame('You guessed too low', $result);
+
+        $result = $game->playRound(5);
+        self::assertSame('You lose', $result);
+    }
 }
