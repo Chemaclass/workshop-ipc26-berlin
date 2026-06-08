@@ -7,21 +7,40 @@ namespace Kata;
 final class GuessingGame
 {
     private int $systemNumber;
+    private int $triesRemaining;
 
     public function __construct(RandomNumberGenerator $randomNumberGenerator)
     {
         $this->systemNumber = $randomNumberGenerator->generate();
+        $this->triesRemaining = 3;
     }
 
-    public function playRound(int $guess): bool
+    public function playRound(int $guess): string
     {
-        if($this->systemNumber===$guess){
-            return true;
-        }    
-        return false;
+        $this->triesRemaining--;
+
+        if ($this->systemNumber === $guess) {
+            return 'You win!';
+        }
+
+        if ($this->triesRemaining === 0 ) {
+            return 'You lose';
+        }
+
+        if ($guess < $this->systemNumber) {
+            return 'You guessed too low';
+        }
+
+        return 'You guessed too high';
     }
 
-    public function getSystemNumber(): int{
+    public function getSystemNumber(): int
+    {
         return $this->systemNumber;
+    }
+
+    public function getTriesRemaining(): int
+    {
+        return $this->triesRemaining;
     }
 }

@@ -17,7 +17,8 @@ final class GuessingGameTest extends TestCase
 
         $game = new GuessingGame($mock);
 
-        self::assertSame(5,$game->getSystemNumber());
+        self::assertSame(5, $game->getSystemNumber());
+        self::assertSame(3, $game->getTriesRemaining());
     }
 
     public function test_Guess_Number_Correct_First_Try(): void
@@ -31,10 +32,10 @@ final class GuessingGameTest extends TestCase
 
         $result = $game->playRound(5);
 
-        self::assertTrue($result);
-
+        self::assertSame('You win!', $result);
     }
-   public function test_Guess_Number_Incorrect_First_Try(): void
+
+    public function test_Guess_Number_Incorrect_First_Try(): void
     {
         $mock = $this->createMock(RandomNumberGenerator::class);
         $mock
@@ -45,12 +46,12 @@ final class GuessingGameTest extends TestCase
 
         $result = $game->playRound(5);
 
-        self::assertFalse($result);
-
+        self::assertSame('You guessed too low', $result);
     }
 
 
-    public function test_Guess_Number_More_Than_Three_Attempts():void{
+    public function test_Guess_Number_More_Than_Three_Attempts(): void
+    {
         $mock = $this->createMock(RandomNumberGenerator::class);
         $mock
             ->method('generate')
@@ -59,13 +60,12 @@ final class GuessingGameTest extends TestCase
         $game = new GuessingGame($mock);
 
         $result = $game->playRound(5);
-        self::assertSame('You guessed too low','');
+        self::assertSame('You guessed too low', $result);
 
         $result = $game->playRound(5);
-        self::assertSame('You guessed too low','');
+        self::assertSame('You guessed too low', $result);
 
         $result = $game->playRound(5);
-        self::assertSame('You lose','');
-
+        self::assertSame('You lose', $result);
     }
 }
