@@ -13,7 +13,7 @@ final class RandomNumberGame
 
     public function guessNumber(int $guess): string
     {
-        $answer = $this;
+        $answer = 5;
 
         if ($guess === $answer) {
             return 'You win!';
