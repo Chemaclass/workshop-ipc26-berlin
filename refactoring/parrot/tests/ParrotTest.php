@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ParrotTests;
 
+use Parrot\NorwegianBlueParams;
 use Parrot\Parrot;
 use Parrot\ParrotTypeEnum;
 use PHPUnit\Framework\TestCase;
@@ -12,7 +13,7 @@ class ParrotTest extends TestCase
 {
     public function testSpeedOfEuropeanParrot(): void
     {
-        $parrot = new Parrot(ParrotTypeEnum::EUROPEAN->value, 0, 0, false);
+        $parrot = new Parrot(ParrotTypeEnum::EUROPEAN->value, 0, 0, false,new NorwegianBlueParams(0,false));
         self::assertSame(12.0, $parrot->getSpeed());
     }
 
