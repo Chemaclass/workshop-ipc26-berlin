@@ -27,9 +27,10 @@ public static function TestCaseProvider():array{
 }
 
 #[DataProvider('TestCaseProvider')]
-    public function test_rock_beats_scissors(string $myInput,
-    string $opponentInput,
-    bool $expectedResult): void{
+    public function test_rock_and_scissors(string $myInput,
+        string $opponentInput,
+        bool $expectedResult): void{
+            
         $changeMe = new ChangeMe();
         
         $result = $changeMe->changeMe($myInput,$opponentInput);
