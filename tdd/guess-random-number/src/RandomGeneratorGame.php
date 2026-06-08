@@ -6,12 +6,18 @@ namespace Kata;
 
 final class RandomGeneratorGame
 {
+    private const int WINNER_NUMBER = 3;
+
     public function play(int $guessedNumber): string
     {
-        if ($guessedNumber === 3) {
-            return 'you win';
+        if ($guessedNumber > self::WINNER_NUMBER) {
+            return 'lower';
         }
 
-        return "lower";
+        if ($guessedNumber < self::WINNER_NUMBER) {
+            return 'higher';
+        }
+
+        return "you win";
     }
 }
