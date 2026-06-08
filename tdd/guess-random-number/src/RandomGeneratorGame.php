@@ -8,8 +8,7 @@ final class RandomGeneratorGame
 {
     public function play(int $guessedNumber): string
     {
-        if ($guessedNumber === 1) {
-
+        if ($guessedNumber === 3) {
             return 'you win';
         }
 
