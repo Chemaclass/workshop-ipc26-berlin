@@ -13,15 +13,15 @@ final class RandomNumberGame
 
     public function guessNumber(int $guess): string
     {
-        $anwer = 5;
+        $answer = $this;
 
-        if ($guess === $anwer) {
+        if ($guess === $answer) {
             return 'You win!';
         }
-        if ($guess < $anwer) {
+        if ($guess < $answer) {
             return 'Higher';
         }
-        if ($guess > $anwer) {
+        if ($guess > $answer) {
             return 'Lower';
         }
 
