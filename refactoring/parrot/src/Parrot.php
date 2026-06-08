@@ -27,19 +27,9 @@ abstract class Parrot implements ParrotInterface
         };
     }
 
-    public function getSpeed(): float
-    {
-        return match ($this->type) {
-            ParrotTypeEnum::NORWEGIAN_BLUE => $this->isNailed ? 0 : $this->getBaseSpeedWith($this->voltage),
-        };
-    }
+    abstract public function getSpeed(): float;
 
-    public function getCry(): string
-    {
-        return match ($this->type) {
-            ParrotTypeEnum::NORWEGIAN_BLUE => $this->voltage > 0 ? 'Bzzzzzz' : '...',
-        };
-    }
+    abstract public function getCry(): string;
 
     protected function getBaseSpeedWith(float $voltage): float
     {
