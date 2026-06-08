@@ -10,12 +10,6 @@ class TennisGame1 implements TennisGame
 
     private int $m_score2 = 0;
 
-    public function __construct(
-        private string $player1Name,
-        private string $player2Name
-    ) {
-    }
-
     public function wonPoint(string $playerName): void
     {
         if ($playerName === 'player1') {
@@ -25,16 +19,21 @@ class TennisGame1 implements TennisGame
         }
     }
 
+    public function isScoreEquals(): string
+    {
+        return match ($this->m_score1) {
+            0 => 'Love-All',
+            1 => 'Fifteen-All',
+            2 => 'Thirty-All',
+            default => 'Deuce',
+        };
+    }
+
     public function getScore(): string
     {
         $score = '';
         if ($this->m_score1 === $this->m_score2) {
-            $score = match ($this->m_score1) {
-                0 => 'Love-All',
-                1 => 'Fifteen-All',
-                2 => 'Thirty-All',
-                default => 'Deuce',
-            };
+            return $this->isScoreEquals();
         } elseif ($this->m_score1 >= 4 || $this->m_score2 >= 4) {
             $minusResult = $this->m_score1 - $this->m_score2;
             if ($minusResult === 1) {
