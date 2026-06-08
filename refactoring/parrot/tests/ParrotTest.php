@@ -13,25 +13,25 @@ class ParrotTest extends TestCase
 {
     public function testSpeedOfEuropeanParrot(): void
     {
-        $parrot = new EuropeanParrot(0, false);
+        $parrot = new EuropeanParrot(false);
         self::assertSame(12.0, $parrot->getSpeed());
     }
 
     public function testSpeedOfAfricanParrotWithOneCoconut(): void
     {
-        $parrot = new AfricanParrot(1, 0, false);
+        $parrot = new AfricanParrot(1, false);
         self::assertSame(3.0, $parrot->getSpeed());
     }
 
     public function testSpeedOfAfricanParrotWithTwoCoconuts(): void
     {
-        $parrot = new AfricanParrot(2, 0, false);
+        $parrot = new AfricanParrot(2, false);
         self::assertSame(0.0, $parrot->getSpeed());
     }
 
     public function testSpeedOfAfricanParrotWithNoCoconuts(): void
     {
-        $parrot = new AfricanParrot(0, 0, false);
+        $parrot = new AfricanParrot(0, false);
         self::assertSame(12.0, $parrot->getSpeed());
     }
 
@@ -55,13 +55,13 @@ class ParrotTest extends TestCase
 
     public function testGetCryOfEuropeanParrot(): void
     {
-        $parrot = new EuropeanParrot(0, false);
+        $parrot = new EuropeanParrot(false);
         self::assertSame('Sqoork!', $parrot->getCry());
     }
 
     public function testGetCryOfAfricanParrot(): void
     {
-        $parrot = new AfricanParrot(1, 0, false);
+        $parrot = new AfricanParrot(1, false);
         self::assertSame('Sqaark!', $parrot->getCry());
     }
 

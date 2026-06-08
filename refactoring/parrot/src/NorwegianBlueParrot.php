@@ -7,10 +7,10 @@ namespace Parrot;
 class NorwegianBlueParrot extends Parrot
 {
     public function __construct(
-        float $voltage,
+        private float $voltage,
         bool $isNailed
     ) {
-        parent::__construct($voltage, $isNailed);
+        parent::__construct($isNailed);
     }
 
     public function getSpeed(): float

@@ -9,7 +9,6 @@ use Exception;
 abstract class Parrot
 {
     public function __construct(
-        protected float $voltage,
         protected bool $isNailed
     ) {
     }

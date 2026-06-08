@@ -7,10 +7,9 @@ namespace Parrot;
 class EuropeanParrot extends Parrot
 {
     public function __construct(
-        float $voltage,
         bool $isNailed
     ) {
-        parent::__construct($voltage, $isNailed);
+        parent::__construct($isNailed);
     }
 
 
