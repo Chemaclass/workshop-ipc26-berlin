@@ -83,4 +83,22 @@ final class GuessingGameTest extends TestCase
         $result = $game->playRound(6);
         self::assertSame('You win!', $result);
     }
+
+    public function test_Guess_Number_Correct_Third_Try(): void{
+        $mock = $this->createMock(RandomNumberGenerator::class);
+        $mock
+            ->method('generate')
+            ->willReturn(6);
+
+        $game = new GuessingGame($mock);
+
+        $result = $game->playRound(5);
+        self::assertSame('You guessed too low', $result);
+
+        $result = $game->playRound(5);
+        self::assertSame('You guessed too low', $result);
+
+        $result = $game->playRound(6);
+        self::assertSame('You win!', $result);
+    }
 }
