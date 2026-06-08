@@ -48,4 +48,24 @@ final class GuessingGameTest extends TestCase
         self::assertFalse($result);
 
     }
+
+
+    public function test_Guess_Number_More_Than_Three_Attempts():void{
+        $mock = $this->createMock(RandomNumberGenerator::class);
+        $mock
+            ->method('generate')
+            ->willReturn(6);
+
+        $game = new GuessingGame($mock);
+
+        $result = $game->playRound(5);
+        self::assertSame('You guessed too low','');
+
+        $result = $game->playRound(5);
+        self::assertSame('You guessed too low','');
+
+        $result = $game->playRound(5);
+        self::assertSame('You lose','');
+
+    }
 }
