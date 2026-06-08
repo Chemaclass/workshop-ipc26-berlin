@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Kata;
 
-final class ChangeMe
+final class GuessingGame
 {
-    public function changeMe(): bool
+    public function playRound(int $guess): bool
     {
         return true;
     }
