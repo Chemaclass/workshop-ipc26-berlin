@@ -22,17 +22,25 @@ class TennisGame1 implements TennisGame
         }
     }
 
+    private function getScoreForEqualStanding(int $score): string
+    {
+        return match ($score) {
+            0 => 'Love-All',
+            1 => 'Fifteen-All',
+            2 => 'Thirty-All',
+            default => 'Deuce',
+        };
+    }
+
     public function getScore(): string
     {
-        $score = '';
         if ($this->player1Score === $this->player2Score) {
-            $score = match ($this->player1Score) {
-                0 => 'Love-All',
-                1 => 'Fifteen-All',
-                2 => 'Thirty-All',
-                default => 'Deuce',
-            };
-        } elseif ($this->player1Score >= 4 || $this->player2Score >= 4) {
+            return $this->getScoreForEqualStanding($this->player1Score);
+        }
+
+        $score = '';
+
+        if ($this->player1Score >= 4 || $this->player2Score >= 4) {
             $minusResult = $this->player1Score - $this->player2Score;
             if ($minusResult === 1) {
                 $score = 'Advantage player1';
