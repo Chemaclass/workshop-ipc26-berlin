@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Parrot;
 
-class Parrot implements ParrotInterface
+abstract class Parrot implements ParrotInterface
 {
     public function __construct(
         private ParrotTypeEnum $type,
@@ -20,7 +20,11 @@ class Parrot implements ParrotInterface
         float $voltage,
         bool $isNailed
     ): self {
-        return new self($type, $numberOfCoconuts, $voltage, $isNailed);
+        return match ($type) {
+            ParrotTypeEnum::EUROPEAN => new EuropeanParrot($type, $numberOfCoconuts, $voltage, $isNailed),
+            ParrotTypeEnum::AFRICAN => new AfricanParrot($type, $numberOfCoconuts, $voltage, $isNailed),
+            ParrotTypeEnum::NORWEGIAN_BLUE => new NorwegianBlueParrot($type, $numberOfCoconuts, $voltage, $isNailed),
+        };
     }
 
     public function getSpeed(): float
