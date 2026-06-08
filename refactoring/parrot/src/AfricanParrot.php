@@ -6,6 +6,11 @@ namespace Parrot;
 
 final class AfricanParrot extends Parrot
 {
+    public function __construct(
+        protected int $numberOfCoconuts
+    ) {
+    }
+
     public function getSpeed(): float
     {
         return max(0, $this->getBaseSpeed() - self::LOAD_FACTOR * $this->numberOfCoconuts);

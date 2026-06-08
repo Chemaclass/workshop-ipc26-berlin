@@ -6,11 +6,6 @@ namespace Parrot;
 
 abstract class Parrot implements ParrotInterface
 {
-    public function __construct(
-        protected int $numberOfCoconuts
-    ) {
-    }
-
     public static function makeParrot(
         ParrotTypeEnum $type,
         int $numberOfCoconuts,
@@ -18,7 +13,7 @@ abstract class Parrot implements ParrotInterface
         bool $isNailed
     ): self {
         return match ($type) {
-            ParrotTypeEnum::EUROPEAN => new EuropeanParrot($numberOfCoconuts),
+            ParrotTypeEnum::EUROPEAN => new EuropeanParrot(),
             ParrotTypeEnum::AFRICAN => new AfricanParrot($numberOfCoconuts),
             ParrotTypeEnum::NORWEGIAN_BLUE => new NorwegianBlueParrot($voltage, $isNailed),
         };
