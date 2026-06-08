@@ -23,8 +23,6 @@ class Parrot
          */
         private int $type,
         private int $numberOfCoconuts,
-        private float $voltage,
-        private bool $isNailed,
         private NorwegianBlueParams $norwegianBlueParams
 
     ) {
