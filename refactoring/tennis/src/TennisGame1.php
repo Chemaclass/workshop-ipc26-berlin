@@ -32,31 +32,7 @@ class TennisGame1 implements TennisGame
             return $this->getScoreAboveThree($this->player1Score - $this->player2Score);
         }
 
-        $score = '';
-
-        for ($i = 1; $i < 3; $i++) {
-            if ($i === 1) {
-                $tempScore = $this->player1Score;
-            } else {
-                $score .= '-';
-                $tempScore = $this->player2Score;
-            }
-            switch ($tempScore) {
-                case 0:
-                    $score .= 'Love';
-                    break;
-                case 1:
-                    $score .= 'Fifteen';
-                    break;
-                case 2:
-                    $score .= 'Thirty';
-                    break;
-                case 3:
-                    $score .= 'Forty';
-                    break;
-            }
-        }
-        return $score;
+        return $this->getScoreName($this->player1Score) . '-' . $this->getScoreName($this->player2Score);
     }
 
     private function getScoreForEqualStanding(int $score): string
@@ -84,5 +60,21 @@ class TennisGame1 implements TennisGame
         }
 
         return $score;
+    }
+
+    private function getScoreName(int $score): string
+    {
+        switch ($score) {
+            case 0:
+                return 'Love';
+            case 1:
+                return 'Fifteen';
+            case 2:
+                return 'Thirty';
+            case 3:
+                return 'Forty';
+        }
+
+        throw new \Exception('Invalid score');
     }
 }
