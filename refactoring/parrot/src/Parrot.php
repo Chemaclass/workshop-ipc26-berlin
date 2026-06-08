@@ -8,6 +8,10 @@ use Exception;
 
 class Parrot
 {
+    private const float MIN_VALUE = 24.0;
+    private const float LOAD_FACTOR = 9.0;
+    private const float BASE_SPEED = 12.0;
+    
     public function __construct(
         /**
          * @var int ParrotTypeEnum
@@ -47,16 +51,16 @@ class Parrot
 
     private function getBaseSpeedWith(float $voltage): float
     {
-        return min(24.0, $voltage * $this->getBaseSpeed());
+        return min(self::MIN_VALUE, $voltage * $this->getBaseSpeed());
     }
 
     private function getLoadFactor(): float
     {
-        return 9.0;
+        return self::LOAD_FACTOR;
     }
 
     private function getBaseSpeed(): float
     {
-        return 12.0;
+        return self::BASE_SPEED;
     }
 }
