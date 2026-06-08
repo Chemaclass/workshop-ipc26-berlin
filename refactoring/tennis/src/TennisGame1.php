@@ -29,14 +29,7 @@ class TennisGame1 implements TennisGame
         };
     }
 
-    public function getScore(): string
-    {
-        $score = '';
-        if ($this->m_score1 === $this->m_score2) {
-            return $this->isScoreEqual();
-        }
-
-        if ($this->m_score1 >= 4 || $this->m_score2 >= 4) {
+        } else if ($this->m_score1 >= 4 || $this->m_score2 >= 4) {
             $minusResult = $this->m_score1 - $this->m_score2;
             if ($minusResult === 1) {
                 $score = 'Advantage player1';
