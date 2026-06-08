@@ -9,10 +9,10 @@ use PHPUnit\Framework\TestCase;
 
 final class GuessingGameTest extends TestCase
 {
-    public function test_change_me(): void
+    public function test_initialization(): void
     {
         $changeMe = new GuessingGame();
 
-        self::assertTrue($changeMe->playRound(1));
+        self::assertSame(5,$changeMe->getSystemNumber());
     }
 }
