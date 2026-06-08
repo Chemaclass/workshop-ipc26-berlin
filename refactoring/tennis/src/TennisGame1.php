@@ -32,7 +32,7 @@ class TennisGame1 implements TennisGame
         if ($this->m_score1 === $this->m_score2) {
             return $this->getEqualScoreName();
         } elseif ($this->m_score1 >= 4 || $this->m_score2 >= 4) {
-            return $this->endGame();
+            return $this->getEndGame();
         } else {
             return $this->getBaseGame();
         }
@@ -48,27 +48,21 @@ class TennisGame1 implements TennisGame
         };
     }
 
-    /**
-     * @return string
-     */
-    public function endGame(): string
+    public function getEndGame(): string
     {
-        $minusResult = $this->m_score1 - $this->m_score2;
-        if ($minusResult === 1) {
-            $score = 'Advantage player1';
-        } elseif ($minusResult === -1) {
-            $score = 'Advantage player2';
-        } elseif ($minusResult >= 2) {
-            $score = 'Win for player1';
-        } else {
-            $score = 'Win for player2';
+        $difference = $this->m_score1 - $this->m_score2;
+
+        if ($difference === 1) {
+            return 'Advantage player1';
+        } elseif ($difference === -1) {
+            return 'Advantage player2';
+        } elseif ($difference >= 2) {
+            return 'Win for player1';
         }
-        return $score;
+
+        return 'Win for player2';
     }
 
-    /**
-     * @return string
-     */
     public function getBaseGame(): string
     {
         return self::SCORE_NAMES[$this->m_score1] . '-' . self::SCORE_NAMES[$this->m_score2];
