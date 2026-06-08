@@ -29,7 +29,7 @@ class TennisGame1 implements TennisGame
         }
 
         if ($this->player1Score >= 4 || $this->player2Score >= 4) {
-            return $this->getScoreAboveThree($this->player1Score - $this->player2Score);
+            return $this->getScoreAboveThree();
         }
 
         return $this->getScoreName($this->player1Score) . '-' . $this->getScoreName($this->player2Score);
@@ -38,28 +38,20 @@ class TennisGame1 implements TennisGame
     private function getScoreForEqualStanding(int $score): string
     {
         return match ($score) {
-            0 => 'Love-All',
-            1 => 'Fifteen-All',
-            2 => 'Thirty-All',
+            0, 1, 2 => $this->getScoreName($score) . '-All',
             default => 'Deuce',
         };
     }
 
-    private function getScoreAboveThree(int $minusResult): string
+    private function getScoreAboveThree(): string
     {
-        $minusResult = $this->player1Score - $this->player2Score;
+        $diff = $this->player1Score - $this->player2Score;
 
-        if ($minusResult === 1) {
-            $score = 'Advantage player1';
-        } elseif ($minusResult === -1) {
-            $score = 'Advantage player2';
-        } elseif ($minusResult >= 2) {
-            $score = 'Win for player1';
-        } else {
-            $score = 'Win for player2';
-        }
+        $prefix = abs($diff) >= 2 ? 'Win for' : 'Advantage';
 
-        return $score;
+        $player = $diff < 0 ? 'player2' : 'player1';
+
+        return $prefix . ' ' . $player;
     }
 
     private function getScoreName(int $score): string
