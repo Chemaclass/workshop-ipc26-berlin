@@ -50,8 +50,8 @@ class Parrot
 
     private function getSpeedForNorwegianBlue(): float
     {
-    $params = $this->norwegianBlueParams;    
-    
+    $params = $this->norwegianBlueParams;
+
     return $params->isNailed ? 0 : $this->getBaseSpeedWith($params->voltage);
     }
 
@@ -70,7 +70,7 @@ class Parrot
 
     private function getCryForNorwegianBlue(): string
     {
-        return $this->voltage > 0 ? self::BZZZT : self::SILENCE;
+        return $this->norwegianBlueParams->voltage > 0 ? self::BZZZT : self::SILENCE;
     }
 
     private function getBaseSpeedWith(float $voltage): float
