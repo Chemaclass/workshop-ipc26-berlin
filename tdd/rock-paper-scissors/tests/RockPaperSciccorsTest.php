@@ -13,6 +13,6 @@ final class RockPaperSciccorsTest extends TestCase
     {
         $changeMe = new RockPaperSciccors();
 
-        self::assertTrue($changeMe->play());
+        self::assertTrue($changeMe->play('rock', 'scissors'));
     }
 }
