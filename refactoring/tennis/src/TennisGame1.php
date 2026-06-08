@@ -32,6 +32,7 @@ class TennisGame1 implements TennisGame
         };
     }
 
+
     public function getScore(): string
     {
         if ($this->player1Score === $this->player2Score) {
@@ -51,28 +52,30 @@ class TennisGame1 implements TennisGame
             } else {
                 $score = 'Win for player2';
             }
-        } else {
-            for ($i = 1; $i < 3; $i++) {
-                if ($i === 1) {
-                    $tempScore = $this->player1Score;
-                } else {
-                    $score .= '-';
-                    $tempScore = $this->player2Score;
-                }
-                switch ($tempScore) {
-                    case 0:
-                        $score .= 'Love';
-                        break;
-                    case 1:
-                        $score .= 'Fifteen';
-                        break;
-                    case 2:
-                        $score .= 'Thirty';
-                        break;
-                    case 3:
-                        $score .= 'Forty';
-                        break;
-                }
+
+            return $score;
+        }
+
+        for ($i = 1; $i < 3; $i++) {
+            if ($i === 1) {
+                $tempScore = $this->player1Score;
+            } else {
+                $score .= '-';
+                $tempScore = $this->player2Score;
+            }
+            switch ($tempScore) {
+                case 0:
+                    $score .= 'Love';
+                    break;
+                case 1:
+                    $score .= 'Fifteen';
+                    break;
+                case 2:
+                    $score .= 'Thirty';
+                    break;
+                case 3:
+                    $score .= 'Forty';
+                    break;
             }
         }
         return $score;
