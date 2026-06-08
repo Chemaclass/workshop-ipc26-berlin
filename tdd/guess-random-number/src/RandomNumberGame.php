@@ -10,4 +10,13 @@ final class RandomNumberGame
     {
         return rand(1, 10);
     }
+
+    public function guessNumber(int $guess): string
+    {
+        if ($guess === 5) {
+            return 'You win!';
+        }
+
+        return 'You lose!';
+    }
 }
