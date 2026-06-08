@@ -14,9 +14,12 @@ abstract class AbstractParrot
     ) {
     }
 
-    abstract public function getSpeed(): float;
-
     abstract public function getCry(): string;
+
+    public function getSpeed(): float
+    {
+        return $this->baseSpeed;
+    }
 
     protected function getBaseSpeedWith(float $voltage): float
     {
