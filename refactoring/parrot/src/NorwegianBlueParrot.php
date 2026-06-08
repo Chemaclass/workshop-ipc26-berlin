@@ -8,9 +8,9 @@ class NorwegianBlueParrot extends Parrot
 {
     public function __construct(
         private float $voltage,
-        bool $isNailed
+        private bool $isNailed
     ) {
-        parent::__construct($isNailed);
+        parent::__construct();
     }
 
     public function getSpeed(): float

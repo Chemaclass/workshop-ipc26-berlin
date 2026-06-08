@@ -8,9 +8,7 @@ use Exception;
 
 abstract class Parrot
 {
-    public function __construct(
-        protected bool $isNailed
-    ) {
+    public function __construct() {
     }
 
     abstract public function getSpeed(): float;

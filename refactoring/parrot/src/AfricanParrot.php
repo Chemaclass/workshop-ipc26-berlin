@@ -8,9 +8,8 @@ class AfricanParrot extends Parrot
 {
     public function __construct(
         private int $numberOfCoconuts,
-        bool $isNailed
     ) {
-        parent::__construct($isNailed);
+        parent::__construct();
     }
 
     public function getSpeed(): float

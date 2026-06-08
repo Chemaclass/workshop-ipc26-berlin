@@ -6,10 +6,8 @@ namespace Parrot;
 
 class EuropeanParrot extends Parrot
 {
-    public function __construct(
-        bool $isNailed
-    ) {
-        parent::__construct($isNailed);
+    public function __construct() {
+        parent::__construct();
     }
 
 
