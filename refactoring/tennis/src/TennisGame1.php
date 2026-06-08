@@ -47,10 +47,10 @@ class TennisGame1 implements TennisGame
     {
         $lead = $this->score1 - $this->score2;
         return match (true) {
-            $lead === 1 => 'Advantage player1',
-            $lead === -1 => 'Advantage player2',
-            $lead >= 2 => 'Win for player1',
-            default => 'Win for player2',
+            $lead === 1 => 'Advantage ' . $this->player1Name,
+            $lead === -1 => 'Advantage ' . $this->player2Name,
+            $lead >= 2 => 'Win for ' . $this->player1Name,
+            default => 'Win for ' . $this->player2Name,
         };
     }
 
