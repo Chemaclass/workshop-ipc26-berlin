@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Parrot;
 
-class AfricanParrot implements Parrot
+readonly class AfricanParrot implements Parrot
 {
     public function __construct(
         private int $numberOfCoconuts,

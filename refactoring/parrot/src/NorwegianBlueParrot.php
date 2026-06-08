@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Parrot;
 
-class NorwegianBlueParrot implements Parrot
+readonly class NorwegianBlueParrot implements Parrot
 {
     public function __construct(
         private float $voltage,
