@@ -18,10 +18,7 @@ class Parrot
     private const string BZZZT = 'Bzzzzzz';
     private const string SILENCE='...';
     public function __construct(
-        /**
-         * @var int ParrotTypeEnum
-         */
-        private int $type,
+        private ParrotTypeEnum $type,
         private int $numberOfCoconuts,
         private NorwegianBlueParams $norwegianBlueParams
 
@@ -34,10 +31,9 @@ class Parrot
     public function getSpeed(): float
     {
         return match ($this->type) {
-            ParrotTypeEnum::EUROPEAN->value => $this->getBaseSpeed(),
-            ParrotTypeEnum::AFRICAN->value => $this->getSpeedForAfrican(),
-            ParrotTypeEnum::NORWEGIAN_BLUE->value => $this->getSpeedForNorwegianBlue(),
-            default => throw new Exception('Should be unreachable'),
+            ParrotTypeEnum::EUROPEAN => $this->getBaseSpeed(),
+            ParrotTypeEnum::AFRICAN => $this->getSpeedForAfrican(),
+            ParrotTypeEnum::NORWEGIAN_BLUE => $this->getSpeedForNorwegianBlue(),
         };
     }
 
@@ -59,10 +55,9 @@ class Parrot
     public function getCry(): string
     {
         return match ($this->type) {
-            ParrotTypeEnum::EUROPEAN->value => self::SQOORK,
-            ParrotTypeEnum::AFRICAN->value => self::SQAARK,
-            ParrotTypeEnum::NORWEGIAN_BLUE->value => $this->getCryForNorwegianBlue(),
-            default => throw new Exception('Should be unreachable'),
+            ParrotTypeEnum::EUROPEAN => self::SQOORK,
+            ParrotTypeEnum::AFRICAN => self::SQAARK,
+            ParrotTypeEnum::NORWEGIAN_BLUE => $this->getCryForNorwegianBlue(),
         };
     }
 

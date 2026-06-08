@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Parrot;
 
-enum ParrotTypeEnum: int
+enum ParrotTypeEnum
 {
-    case EUROPEAN = 0;
+    case EUROPEAN;
 
-    case AFRICAN = 1;
+    case AFRICAN;
 
-    case NORWEGIAN_BLUE = 2;
+    case NORWEGIAN_BLUE;
 }
