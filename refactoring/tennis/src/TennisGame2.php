@@ -14,26 +14,14 @@ class TennisGame2 implements TennisGame
 
     private string $P2res = '';
 
-    public function __construct(
-        private string $player1Name,
-        private string $player2Name
-    ) {
-    }
-
     public function getScore(): string
     {
         $score = '';
+        $player1Result = '';
+        $player2Result = '';
+
         if ($this->P1point === $this->P2point && $this->P1point < 4) {
-            if ($this->P1point === 0) {
-                $score = 'Love';
-            }
-            if ($this->P1point === 1) {
-                $score = 'Fifteen';
-            }
-            if ($this->P1point === 2) {
-                $score = 'Thirty';
-            }
-            $score .= '-All';
+            $score = $this->getEqualScore();
         }
 
         if ($this->P1point === $this->P2point && $this->P1point >= 3) {
@@ -42,63 +30,63 @@ class TennisGame2 implements TennisGame
 
         if ($this->P1point > 0 && $this->P2point === 0) {
             if ($this->P1point === 1) {
-                $this->P1res = 'Fifteen';
+                $player1Result = 'Fifteen';
             }
             if ($this->P1point === 2) {
-                $this->P1res = 'Thirty';
+                $player1Result = 'Thirty';
             }
             if ($this->P1point === 3) {
-                $this->P1res = 'Forty';
+                $player1Result = 'Forty';
             }
 
-            $this->P2res = 'Love';
-            $score = "{$this->P1res}-{$this->P2res}";
+            $player2Result = 'Love';
+            $score = "{$player1Result}-{$player2Result}";
         }
 
         if ($this->P2point > 0 && $this->P1point === 0) {
             if ($this->P2point === 1) {
-                $this->P2res = 'Fifteen';
+                $player2Result = 'Fifteen';
             }
             if ($this->P2point === 2) {
-                $this->P2res = 'Thirty';
+                $player2Result = 'Thirty';
             }
             if ($this->P2point === 3) {
-                $this->P2res = 'Forty';
+                $player2Result = 'Forty';
             }
-            $this->P1res = 'Love';
-            $score = "{$this->P1res}-{$this->P2res}";
+            $player1Result = 'Love';
+            $score = "{$player1Result}-{$player2Result}";
         }
 
         if ($this->P1point > $this->P2point && $this->P1point < 4) {
             if ($this->P1point === 2) {
-                $this->P1res = 'Thirty';
+                $player1Result = 'Thirty';
             }
             if ($this->P1point === 3) {
-                $this->P1res = 'Forty';
+                $player1Result = 'Forty';
             }
             if ($this->P2point === 1) {
-                $this->P2res = 'Fifteen';
+                $player2Result = 'Fifteen';
             }
             if ($this->P2point === 2) {
-                $this->P2res = 'Thirty';
+                $player2Result = 'Thirty';
             }
-            $score = "{$this->P1res}-{$this->P2res}";
+            $score = "{$player1Result}-{$player2Result}";
         }
 
         if ($this->P2point > $this->P1point && $this->P2point < 4) {
             if ($this->P2point === 2) {
-                $this->P2res = 'Thirty';
+                $player2Result = 'Thirty';
             }
             if ($this->P2point === 3) {
-                $this->P2res = 'Forty';
+                $player2Result = 'Forty';
             }
             if ($this->P1point === 1) {
-                $this->P1res = 'Fifteen';
+                $player1Result = 'Fifteen';
             }
             if ($this->P1point === 2) {
-                $this->P1res = 'Thirty';
+                $player1Result = 'Thirty';
             }
-            $score = "{$this->P1res}-{$this->P2res}";
+            $score = "{$player1Result}-{$player2Result}";
         }
 
         if ($this->P1point > $this->P2point && $this->P2point >= 3) {
@@ -127,6 +115,30 @@ class TennisGame2 implements TennisGame
         } else {
             $this->P2Score();
         }
+    }
+
+    /**
+     * @return string
+     */
+    public function getEqualScore(): string
+    {
+        $score = '';
+
+        if ($this->P1point === 0) {
+            $score = 'Love';
+        }
+
+        if ($this->P1point === 1) {
+            $score = 'Fifteen';
+        }
+
+        if ($this->P1point === 2) {
+            $score = 'Thirty';
+        }
+
+        $score .= '-All';
+
+        return $score;
     }
 
     private function SetP1Score(int $number): void
