@@ -56,12 +56,6 @@ class TennisGame1 implements TennisGame
 
     private function getScoreName(int $score): string
     {
-        return match ($score) {
-            0 => 'Love',
-            1 => 'Fifteen',
-            2 => 'Thirty',
-            3 => 'Forty',
-            default => throw new \Exception('Invalid score'),
-        };
+        return Score::fromInt($score)->name;
     }
 }
