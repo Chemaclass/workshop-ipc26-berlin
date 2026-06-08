@@ -9,10 +9,10 @@ final class GuessingGame
     private int $systemNumber;
     private int $triesRemaining;
 
-    public function __construct(RandomNumberGenerator $randomNumberGenerator)
+    public function __construct(RandomNumberGenerator $randomNumberGenerator, int $triesRemaining)
     {
         $this->systemNumber = $randomNumberGenerator->generate();
-        $this->triesRemaining = 3;
+        $this->triesRemaining = $triesRemaining;
     }
 
     public function playRound(int $guess): string
