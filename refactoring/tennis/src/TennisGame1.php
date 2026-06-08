@@ -33,16 +33,13 @@ class TennisGame1 implements TennisGame
                 ? 'Deuce'
                 : $this->pointName($this->score1) . '-All';
         } elseif ($this->score1 >= 4 || $this->score2 >= 4) {
-            $minusResult = $this->score1 - $this->score2;
-            if ($minusResult === 1) {
-                $score = 'Advantage player1';
-            } elseif ($minusResult === -1) {
-                $score = 'Advantage player2';
-            } elseif ($minusResult >= 2) {
-                $score = 'Win for player1';
-            } else {
-                $score = 'Win for player2';
-            }
+            $lead = $this->score1 - $this->score2;
+            $score = match (true) {
+                $lead === 1 => 'Advantage player1',
+                $lead === -1 => 'Advantage player2',
+                $lead >= 2 => 'Win for player1',
+                default => 'Win for player2',
+            };
         } else {
             $score = $this->pointName($this->score1) . '-' . $this->pointName($this->score2);
         }
