@@ -11,7 +11,7 @@ class AfricanParrot extends Parrot
         float $voltage,
         bool $isNailed
     ) {
-        parent::__construct(ParrotTypeEnum::AFRICAN, $numberOfCoconuts, $voltage, $isNailed);
+        parent::__construct($numberOfCoconuts, $voltage, $isNailed);
     }
 
     public function getSpeed(): float

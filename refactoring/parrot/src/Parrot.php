@@ -9,10 +9,6 @@ use Exception;
 abstract class Parrot
 {
     public function __construct(
-        /**
-         * @var int ParrotTypeEnum
-         */
-        private int $type,
         protected int $numberOfCoconuts,
         protected float $voltage,
         protected bool $isNailed

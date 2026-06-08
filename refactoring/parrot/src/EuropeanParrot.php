@@ -11,7 +11,7 @@ class EuropeanParrot extends Parrot
         float $voltage,
         bool $isNailed
     ) {
-        parent::__construct(ParrotTypeEnum::EUROPEAN, $numberOfCoconuts, $voltage, $isNailed);
+        parent::__construct($numberOfCoconuts, $voltage, $isNailed);
     }
 
 
