@@ -11,8 +11,8 @@ class TennisGame1 implements TennisGame
     private int $score2 = 0;
 
     public function __construct(
-        private string $player1Name,
-        private string $player2Name
+        private readonly string $player1Name,
+        private readonly string $player2Name
     ) {
     }
 
