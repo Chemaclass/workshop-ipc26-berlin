@@ -8,6 +8,6 @@ final class RandomNumberGenerator implements RandomNumberGeneratorInterface
 {
     public function generate(): int
     {
-        return rand(1, 10);
+        return rand(1, 100);
     }
 }
