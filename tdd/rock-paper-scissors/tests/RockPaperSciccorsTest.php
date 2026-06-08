@@ -9,17 +9,38 @@ use PHPUnit\Framework\TestCase;
 
 final class RockPaperSciccorsTest extends TestCase
 {
-    public function testPlay(): void
+    public function testRockWinsToScissors(): void
     {
-        $changeMe = new RockPaperSciccors();
+        $rockPaperScissors = new RockPaperSciccors();
 
-        self::assertTrue($changeMe->play('rock', 'scissors'));
+        self::assertTrue($rockPaperScissors->play('rock', 'scissors'));
     }
 
     public function testScissorsLoosesToRock(): void
     {
-        $changeMe = new RockPaperSciccors();
+        $rockPaperScissors = new RockPaperSciccors();
 
-        self::assertFalse($changeMe->play('scissors', 'rock'));
+        self::assertFalse($rockPaperScissors->play('scissors', 'rock'));
+    }
+
+    public function testPaperWinsToRock(): void
+    {
+        $rockPaperScissors = new RockPaperSciccors();
+
+        self::assertTrue($rockPaperScissors->play('paper', 'rock'));
+    }
+
+    public function testRockLosesToPaper(): void
+    {
+        $rockPaperScissors = new RockPaperSciccors();
+
+        self::assertFalse($rockPaperScissors->play('rock', 'paper'));
+    }
+
+    public function testScissorsWinsToPaper(): void
+    {
+        $rockPaperScissors = new RockPaperSciccors();
+
+        self::assertTrue($rockPaperScissors->play('scissors', 'paper'));
     }
 }
