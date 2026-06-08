@@ -6,6 +6,12 @@ namespace Parrot;
 
 final class NorwegianBlueParrot extends Parrot
 {
+    public function __construct(
+        protected float $voltage,
+        protected bool $isNailed
+    ) {
+    }
+
     public function getSpeed(): float
     {
         return $this->isNailed ? 0 : $this->getBaseSpeedWith($this->voltage);
