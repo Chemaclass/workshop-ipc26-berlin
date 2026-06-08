@@ -6,6 +6,7 @@ namespace KataTests;
 
 use Kata\GuessingGame;
 use Kata\RandomNumberGenerator;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 final class GuessingGameTest extends TestCase
@@ -20,8 +21,10 @@ final class GuessingGameTest extends TestCase
         return $mock;
     }
 
-    private function setupGame(RandomNumberGenerator $generator,
-    int $tries): GuessingGame{
+    private function setupGame(
+        RandomNumberGenerator $generator,
+        int $tries
+    ): GuessingGame {
         return new GuessingGame($generator, $tries);
     }
 
@@ -52,28 +55,11 @@ final class GuessingGameTest extends TestCase
     {
         $mock = $this->setupDependency(6);
 
-       $game = $this->setupGame($mock, 5);
+        $game = $this->setupGame($mock, 5);
 
         $result = $game->playRound(5);
 
         self::assertSame('You guessed too low', $result);
-    }
-
-
-    public function test_Guess_Number_More_Than_Three_Attempts(): void
-    {
-        $mock = $this->setupDependency(6);
-
-       $game = $this->setupGame($mock, 3);
-
-        $result = $game->playRound(5);
-        self::assertSame('You guessed too low', $result);
-
-        $result = $game->playRound(5);
-        self::assertSame('You guessed too low', $result);
-
-        $result = $game->playRound(5);
-        self::assertSame('You lose', $result);
     }
 
     public function test_Guess_Number_Correct_Second_Try(): void
@@ -109,28 +95,37 @@ final class GuessingGameTest extends TestCase
     {
         $mock = $this->setupDependency(6);
 
-       $game = $this->setupGame($mock, 5);
+        $game = $this->setupGame($mock, 5);
 
         $result = $game->playRound(7);
         self::assertSame('You guessed too high', $result);
     }
 
-      public function test_Guess_Number_More_Than_X_Attempts(): void
+    #[DataProvider('dataProvider')]
+    public function test_Guess_Number_More_Than_X_Attempts(int $tries): void
     {
         $mock = $this->setupDependency(6);
 
-       $game = $this->setupGame($mock, 4);
+        $game = $this->setupGame($mock, $tries);
 
-        $result = $game->playRound(5);
-        self::assertSame('You guessed too low', $result);
-
-        $result = $game->playRound(5);
-        self::assertSame('You guessed too low', $result);
-
-        $result = $game->playRound(5);
-        self::assertSame('You guessed too low', $result);
+        for ($i = 0; $i < $tries - 1; $i++) {
+            $result = $game->playRound(5);
+            self::assertSame('You guessed too low', $result);
+        }
 
         $result = $game->playRound(5);
         self::assertSame('You lose', $result);
+    }
+
+    public static function dataProvider(): array
+    {
+        return [
+            'three tries' => [
+                'tries' => 3
+            ],
+            'four tries' => [
+                'tries' => 4
+            ]
+        ];
     }
 }
