@@ -9,4 +9,5 @@ enum RandomGeneratorGameResult: string
     case HIGHER = 'higher';
     case LOWER = 'lower';
     case WIN = 'you win';
+    case LOSE = 'you lose';
 }
