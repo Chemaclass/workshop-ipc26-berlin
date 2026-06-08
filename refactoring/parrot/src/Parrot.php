@@ -4,12 +4,8 @@ declare(strict_types=1);
 
 namespace Parrot;
 
-class Parrot
+class Parrot implements ParrotInterface
 {
-    private const float BASE_SPEED = 12.0;
-    private const float LOAD_FACTOR = 9.0;
-    private const float MIN_BASE_SPEED = 24.0;
-
     public function __construct(
         private ParrotTypeEnum $type,
         private int $numberOfCoconuts,
