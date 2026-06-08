@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Parrot;
 
-class NorwegianBlueParrot extends Parrot
+class NorwegianBlueParrot implements Parrot
 {
     public function __construct(
         private float $voltage,
         private bool $isNailed
     ) {
-        parent::__construct();
     }
 
     public function getSpeed(): float
@@ -25,6 +24,6 @@ class NorwegianBlueParrot extends Parrot
 
     private function getBaseSpeedWith(float $voltage): float
     {
-        return min(24.0, $voltage * $this->getBaseSpeed());
+        return min(24.0, $voltage * self::BASE_SPEED);
     }
 }

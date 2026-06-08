@@ -4,16 +4,11 @@ declare(strict_types=1);
 
 namespace Parrot;
 
-class EuropeanParrot extends Parrot
+class EuropeanParrot implements Parrot
 {
-    public function __construct() {
-        parent::__construct();
-    }
-
-
     public function getSpeed(): float
     {
-        return $this->getBaseSpeed();
+        return self::BASE_SPEED;
     }
 
     public function getCry(): string

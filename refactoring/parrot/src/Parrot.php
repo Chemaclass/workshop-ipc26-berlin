@@ -4,19 +4,11 @@ declare(strict_types=1);
 
 namespace Parrot;
 
-use Exception;
-
-abstract class Parrot
+interface Parrot
 {
-    public function __construct() {
-    }
+    const float BASE_SPEED = 12;
 
-    abstract public function getSpeed(): float;
+    public function getSpeed(): float;
 
-    abstract public function getCry(): string;
-
-    protected function getBaseSpeed(): float
-    {
-        return 12.0;
-    }
+    public function getCry(): string;
 }

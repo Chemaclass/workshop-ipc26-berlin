@@ -4,17 +4,16 @@ declare(strict_types=1);
 
 namespace Parrot;
 
-class AfricanParrot extends Parrot
+class AfricanParrot implements Parrot
 {
     public function __construct(
         private int $numberOfCoconuts,
     ) {
-        parent::__construct();
     }
 
     public function getSpeed(): float
     {
-        return max(0, $this->getBaseSpeed() - $this->getLoadFactor() * $this->numberOfCoconuts);
+        return max(0, self::BASE_SPEED - $this->getLoadFactor() * $this->numberOfCoconuts);
     }
 
     public function getCry(): string
