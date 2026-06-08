@@ -9,10 +9,12 @@ use PHPUnit\Framework\TestCase;
 
 final class ChangeMeTest extends TestCase
 {
-    public function test_change_me(): void
-    {
-        $changeMe = new ChangeMe();
 
-        self::assertTrue($changeMe->changeMe());
+
+    public function test_rock_beats_scissors(): void{
+        $changeMe = new ChangeMe();
+        
+        
+        self::assertTrue($changeMe->changeMe('Rock','Scissors'));
     }
 }

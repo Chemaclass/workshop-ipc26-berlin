@@ -6,8 +6,11 @@ namespace Kata;
 
 final class ChangeMe
 {
-    public function changeMe(): bool
+    public function changeMe(string $myInput, string $opponentInput): bool
     {
-        return true;
+        if($myInput === 'Rock' && $opponentInput === 'Scissors'){
+            return true;
+        }
+    return false;
     }
 }
