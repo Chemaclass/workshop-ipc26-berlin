@@ -22,14 +22,4 @@ abstract class AbstractParrot
     {
         return min($this->baseSpeed * 2, $voltage * $this->baseSpeed);
     }
-
-    protected function getLoadFactor(): float
-    {
-        return $this->loadFactor;
-    }
-
-    protected function getBaseSpeed(): float
-    {
-        return $this->baseSpeed;
-    }
 }
