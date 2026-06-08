@@ -11,13 +11,13 @@ final class RandomGeneratorGame
     public function play(int $guessedNumber): string
     {
         if ($guessedNumber > self::WINNER_NUMBER) {
-            return 'lower';
+            return RandomGeneratorGameResult::LOWER->value;
         }
 
         if ($guessedNumber < self::WINNER_NUMBER) {
-            return 'higher';
+            return RandomGeneratorGameResult::HIGHER->value;
         }
 
-        return "you win";
+        return RandomGeneratorGameResult::WIN->value;
     }
 }
