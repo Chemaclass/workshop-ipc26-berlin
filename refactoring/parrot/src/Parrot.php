@@ -21,18 +21,7 @@ abstract class Parrot
 
     abstract public function getSpeed(): float;
 
-    /**
-     * @throws Exception
-     */
-    public function getCry(): string
-    {
-        return match ($this->type) {
-            ParrotTypeEnum::EUROPEAN => 'Sqoork!',
-            ParrotTypeEnum::AFRICAN => 'Sqaark!',
-            ParrotTypeEnum::NORWEGIAN_BLUE => $this->voltage > 0 ? 'Bzzzzzz' : '...',
-            default => throw new Exception('Should be unreachable'),
-        };
-    }
+    abstract public function getCry(): string;
 
     protected function getBaseSpeedWith(float $voltage): float
     {

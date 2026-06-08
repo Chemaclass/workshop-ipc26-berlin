@@ -19,4 +19,9 @@ class EuropeanParrot extends Parrot
     {
         return $this->getBaseSpeed();
     }
+
+    public function getCry(): string
+    {
+        return 'Sqoork!';
+    }
 }
