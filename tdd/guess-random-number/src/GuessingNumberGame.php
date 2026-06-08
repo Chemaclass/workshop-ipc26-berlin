@@ -20,6 +20,10 @@ final class GuessingNumberGame
 
     public function guessNumber(int $number): string
     {
+        if ($this->attempts >= $this->maxAttempts) {
+            return 'You reached your max attempts!';
+        }
+
         $this->attempts++;
 
         if ($number === $this->winningNumber && $this->attempts <= $this->maxAttempts) {

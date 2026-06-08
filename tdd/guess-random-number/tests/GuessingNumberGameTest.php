@@ -77,7 +77,16 @@ final class GuessingNumberGameTest extends TestCase
         self::assertSame('Higher', $game->guessNumber(1));
         self::assertSame('Lower', $game->guessNumber(10));
         self::assertSame('You lose! The number was 5', $game->guessNumber(3));
-        self::assertSame('You lose! The number was 5', $game->guessNumber(5));
+    }
+
+    public function test_no_more_guessing_after_max_attempts(): void
+    {
+        $game = new GuessingNumberGame($this->randomNumberGenerator, 3);
+
+        self::assertSame('Higher', $game->guessNumber(1));
+        self::assertSame('Lower', $game->guessNumber(10));
+        self::assertSame('You win!', $game->guessNumber(5));
+        self::assertSame('You reached your max attempts!', $game->guessNumber(5));
     }
 
     public function test_max_attempts_are_configurable(): void
