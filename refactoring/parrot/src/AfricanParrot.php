@@ -23,4 +23,9 @@ class AfricanParrot extends Parrot
     {
         return 'Sqaark!';
     }
+
+    private function getLoadFactor(): float
+    {
+        return 9.0;
+    }
 }

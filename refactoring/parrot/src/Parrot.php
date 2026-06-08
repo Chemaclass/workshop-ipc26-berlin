@@ -19,11 +19,6 @@ abstract class Parrot
 
     abstract public function getCry(): string;
 
-    protected function getLoadFactor(): float
-    {
-        return 9.0;
-    }
-
     protected function getBaseSpeed(): float
     {
         return 12.0;
