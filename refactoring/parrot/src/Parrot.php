@@ -18,6 +18,15 @@ class Parrot
     ) {
     }
 
+    public static function makeParrot(
+        ParrotTypeEnum $type,
+        int $numberOfCoconuts,
+        float $voltage,
+        bool $isNailed
+    ): self {
+        return new self($type, $numberOfCoconuts, $voltage, $isNailed);
+    }
+
     public function getSpeed(): float
     {
         return match ($this->type) {
