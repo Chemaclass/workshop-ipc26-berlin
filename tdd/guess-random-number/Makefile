@@ -10,16 +10,16 @@ help: ## Show this help message.
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | column -t -s ':' | sed 's/^  //'
 
 build: ## Build the PHP container.
-	docker-compose build
+	docker compose build
 
 up: ## Start container in background.
-	docker-compose up -d
+	docker compose up -d
 
 down: ## Stop container.
-	docker-compose down
+	docker compose down
 
 test: ## Run the tests.
-	docker-compose run --rm $(SERVICE) composer test
+	docker compose run --rm $(SERVICE) composer test
 
 stan: ## Run static analysis.
 	docker-compose run --rm $(SERVICE) composer phpstan
