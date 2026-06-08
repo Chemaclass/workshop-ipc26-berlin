@@ -10,12 +10,15 @@ class TennisGame1 implements TennisGame
 
     private int $player2Score = 0;
 
-    public function __construct() {
+    public function __construct(
+        private string $player1Name,
+        private string $player2Name
+    ) {
     }
 
     public function wonPoint(string $playerName): void
     {
-        if ($playerName === 'player1') {
+        if ($playerName === $this->player1Name) {
             $this->player1Score++;
         } else {
             $this->player2Score++;
@@ -49,7 +52,7 @@ class TennisGame1 implements TennisGame
 
         $prefix = abs($diff) >= 2 ? 'Win for' : 'Advantage';
 
-        $player = $diff < 0 ? 'player2' : 'player1';
+        $player = $diff < 0 ? $this->player2Name : $this->player1Name;
 
         return $prefix . ' ' . $player;
     }
