@@ -7,7 +7,6 @@ namespace ParrotTests;
 use Parrot\AfricanParrot;
 use Parrot\EuropeanParrot;
 use Parrot\NorwegianBlueParrot;
-use Parrot\ParrotTypeEnum;
 use PHPUnit\Framework\TestCase;
 
 class ParrotTest extends TestCase
