@@ -6,6 +6,10 @@ namespace Parrot;
 
 class Parrot
 {
+    private const float BASE_SPEED = 12.0;
+    private const float LOAD_FACTOR = 9.0;
+    private const float MIN_BASE_SPEED = 24.0;
+
     public function __construct(
         private ParrotTypeEnum $type,
         private int $numberOfCoconuts,
@@ -34,16 +38,16 @@ class Parrot
 
     private function getBaseSpeedWith(float $voltage): float
     {
-        return min(24.0, $voltage * $this->getBaseSpeed());
+        return min(self::MIN_BASE_SPEED, $voltage * $this->getBaseSpeed());
     }
 
     private function getLoadFactor(): float
     {
-        return 9.0;
+        return self::LOAD_FACTOR;
     }
 
     private function getBaseSpeed(): float
     {
-        return 12.0;
+        return self::BASE_SPEED;
     }
 }
