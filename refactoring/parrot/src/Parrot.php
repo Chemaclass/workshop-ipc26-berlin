@@ -30,11 +30,6 @@ abstract class Parrot implements ParrotInterface
 
     abstract public function getCry(): string;
 
-    protected function getBaseSpeedWith(float $voltage): float
-    {
-        return min(self::MIN_BASE_SPEED, $voltage * $this->getBaseSpeed());
-    }
-
     protected function getBaseSpeed(): float
     {
         return self::BASE_SPEED;
