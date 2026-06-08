@@ -6,6 +6,8 @@ namespace TennisGame;
 
 class TennisGame1 implements TennisGame
 {
+    const SCORE_NAMES = ['Love', 'Fifteen', 'Thirty', 'Forty'];
+
     private int $m_score1 = 0;
 
     private int $m_score2 = 0;
@@ -27,45 +29,13 @@ class TennisGame1 implements TennisGame
 
     public function getScore(): string
     {
-        $score = '';
         if ($this->m_score1 === $this->m_score2) {
             return $this->getEqualScoreName();
         } elseif ($this->m_score1 >= 4 || $this->m_score2 >= 4) {
-            $minusResult = $this->m_score1 - $this->m_score2;
-            if ($minusResult === 1) {
-                $score = 'Advantage player1';
-            } elseif ($minusResult === -1) {
-                $score = 'Advantage player2';
-            } elseif ($minusResult >= 2) {
-                $score = 'Win for player1';
-            } else {
-                $score = 'Win for player2';
-            }
+            return $this->endGame();
         } else {
-            for ($i = 1; $i < 3; $i++) {
-                if ($i === 1) {
-                    $tempScore = $this->m_score1;
-                } else {
-                    $score .= '-';
-                    $tempScore = $this->m_score2;
-                }
-                switch ($tempScore) {
-                    case 0:
-                        $score .= 'Love';
-                        break;
-                    case 1:
-                        $score .= 'Fifteen';
-                        break;
-                    case 2:
-                        $score .= 'Thirty';
-                        break;
-                    case 3:
-                        $score .= 'Forty';
-                        break;
-                }
-            }
+            return $this->getBaseGame();
         }
-        return $score;
     }
 
     private function getEqualScoreName(): string
@@ -76,5 +46,31 @@ class TennisGame1 implements TennisGame
             2 => 'Thirty-All',
             default => 'Deuce',
         };
+    }
+
+    /**
+     * @return string
+     */
+    public function endGame(): string
+    {
+        $minusResult = $this->m_score1 - $this->m_score2;
+        if ($minusResult === 1) {
+            $score = 'Advantage player1';
+        } elseif ($minusResult === -1) {
+            $score = 'Advantage player2';
+        } elseif ($minusResult >= 2) {
+            $score = 'Win for player1';
+        } else {
+            $score = 'Win for player2';
+        }
+        return $score;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBaseGame(): string
+    {
+        return self::SCORE_NAMES[$this->m_score1] . '-' . self::SCORE_NAMES[$this->m_score2];
     }
 }
