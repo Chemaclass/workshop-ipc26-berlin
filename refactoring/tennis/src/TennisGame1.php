@@ -32,6 +32,7 @@ class TennisGame1 implements TennisGame
         } elseif ($this->player1Score >= 4 || $this->player2Score >= 4) {
             return $this->handleCaseAdvantage();
         } else {
+
             for ($i = 1; $i < 3; $i++) {
                 if ($i === 1) {
                     $tempScore = $this->player1Score;
@@ -39,20 +40,7 @@ class TennisGame1 implements TennisGame
                     $score .= '-';
                     $tempScore = $this->player2Score;
                 }
-                switch ($tempScore) {
-                    case 0:
-                        $score .= 'Love';
-                        break;
-                    case 1:
-                        $score .= 'Fifteen';
-                        break;
-                    case 2:
-                        $score .= 'Thirty';
-                        break;
-                    case 3:
-                        $score .= 'Forty';
-                        break;
-                }
+                $score .= $this->handleIntToStringScore($tempScore);
             }
         }
         return $score;
@@ -80,4 +68,22 @@ class TennisGame1 implements TennisGame
         }
 
     }
+    private function handleIntToStringScore(int $tempScore):string{
+        $score = '';
+        switch ($tempScore) {
+                    case 0:
+                        $score .= 'Love';
+                        break;
+                    case 1:
+                        $score .= 'Fifteen';
+                        break;
+                    case 2:
+                        $score .= 'Thirty';
+                        break;
+                    case 3:
+                        $score .= 'Forty';
+                        break;
+                }
+                return $score;
+            }
 }
