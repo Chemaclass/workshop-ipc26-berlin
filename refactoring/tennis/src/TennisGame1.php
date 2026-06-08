@@ -28,12 +28,7 @@ class TennisGame1 implements TennisGame
     {
         $score = '';
         if ($this->player1Score === $this->player2Score) {
-            $score = match ($this->player1Score) {
-                0 => 'Love-All',
-                1 => 'Fifteen-All',
-                2 => 'Thirty-All',
-                default => 'Deuce',
-            };
+            return $this->handleCaseSameScore();
         } elseif ($this->player1Score >= 4 || $this->player2Score >= 4) {
             $minusResult = $this->player1Score - $this->player2Score;
             if ($minusResult === 1) {
@@ -70,5 +65,14 @@ class TennisGame1 implements TennisGame
             }
         }
         return $score;
+    }
+
+    private function handleCaseSameScore():string{
+        return match ($this->player1Score) {
+                0 => 'Love-All',
+                1 => 'Fifteen-All',
+                2 => 'Thirty-All',
+                default => 'Deuce',
+            };
     }
 }
