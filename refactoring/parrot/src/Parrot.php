@@ -12,6 +12,11 @@ class Parrot
     private const float LOAD_FACTOR = 9.0;
     private const float BASE_SPEED = 12.0;
     
+
+    private const string SQOORK ='Sqoork!';
+       private const string SQAARK ='Sqaark!';
+       private const string BZZZT = 'Bzzzzzz';
+       private const SILENCE='...';
     public function __construct(
         /**
          * @var int ParrotTypeEnum
@@ -42,9 +47,9 @@ class Parrot
     public function getCry(): string
     {
         return match ($this->type) {
-            ParrotTypeEnum::EUROPEAN->value => 'Sqoork!',
-            ParrotTypeEnum::AFRICAN->value => 'Sqaark!',
-            ParrotTypeEnum::NORWEGIAN_BLUE->value => $this->voltage > 0 ? 'Bzzzzzz' : '...',
+            ParrotTypeEnum::EUROPEAN->value => self::SQOORK,
+            ParrotTypeEnum::AFRICAN->value => self::SQAARK,
+            ParrotTypeEnum::NORWEGIAN_BLUE->value => $this->voltage > 0 ? self::BZZZT : self::SILENCE,
             default => throw new Exception('Should be unreachable'),
         };
     }
