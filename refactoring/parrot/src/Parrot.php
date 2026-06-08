@@ -25,9 +25,9 @@ class Parrot
     public function getSpeed(): float
     {
         return match ($this->type) {
-            ParrotTypeEnum::EUROPEAN => $this->getBaseSpeed(),
-            ParrotTypeEnum::AFRICAN => max(0, $this->getBaseSpeed() - $this->getLoadFactor() * $this->numberOfCoconuts),
-            ParrotTypeEnum::NORWEGIAN_BLUE => $this->isNailed ? 0 : $this->getBaseSpeedWith($this->voltage),
+            ParrotTypeEnum::EUROPEAN->value => $this->getBaseSpeed(),
+            ParrotTypeEnum::AFRICAN->value => max(0, $this->getBaseSpeed() - $this->getLoadFactor() * $this->numberOfCoconuts),
+            ParrotTypeEnum::NORWEGIAN_BLUE->value => $this->isNailed ? 0 : $this->getBaseSpeedWith($this->voltage),
             default => throw new Exception('Should be unreachable'),
         };
     }
@@ -38,9 +38,9 @@ class Parrot
     public function getCry(): string
     {
         return match ($this->type) {
-            ParrotTypeEnum::EUROPEAN => 'Sqoork!',
-            ParrotTypeEnum::AFRICAN => 'Sqaark!',
-            ParrotTypeEnum::NORWEGIAN_BLUE => $this->voltage > 0 ? 'Bzzzzzz' : '...',
+            ParrotTypeEnum::EUROPEAN->value => 'Sqoork!',
+            ParrotTypeEnum::AFRICAN->value => 'Sqaark!',
+            ParrotTypeEnum::NORWEGIAN_BLUE->value => $this->voltage > 0 ? 'Bzzzzzz' : '...',
             default => throw new Exception('Should be unreachable'),
         };
     }
