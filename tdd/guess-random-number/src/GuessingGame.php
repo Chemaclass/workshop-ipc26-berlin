@@ -15,7 +15,10 @@ final class GuessingGame
 
     public function playRound(int $guess): bool
     {
-        return true;
+        if($this->systemNumber===$guess){
+            return true;
+        }    
+        return false;
     }
 
     public function getSystemNumber(): int{

@@ -20,7 +20,7 @@ final class GuessingGameTest extends TestCase
         self::assertSame(5,$game->getSystemNumber());
     }
 
-    public function test_guess_Number_First_Try(): void
+    public function test_Guess_Number_Correct_First_Try(): void
     {
         $mock = $this->createMock(RandomNumberGenerator::class);
         $mock
