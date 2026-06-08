@@ -6,12 +6,13 @@ namespace KataTests;
 
 use Kata\RandomNumberGame;
 use PHPUnit\Framework\TestCase;
+use Kata\StubGenerator;
 
 final class RandomNumberTest extends TestCase
 {
     public function testGetRandomNumber(): void
     {
-        $randomNumberGame = new RandomNumberGame();
+        $randomNumberGame = new RandomNumberGame(new StubGenerator(5));
 
         $result = $randomNumberGame->getRandomNumber();
         self::assertIsInt($result);
@@ -19,16 +20,16 @@ final class RandomNumberTest extends TestCase
 
     public function testGuessNumber(): void
     {
-        $randomNumberGame = new RandomNumberGame();
+        $randomNumberGame = new RandomNumberGame(new StubGenerator(5));
 
-        self::assertTrue($randomNumberGame->guessNumber(5) === 'You win!');
+        self::assertSame($randomNumberGame->guessNumber(5),'You win!');
     }
 
     public function testGuessNumberHigherLower(): void
     {
-        $randomNumberGame = new RandomNumberGame();
+        $randomNumberGame = new RandomNumberGame(new StubGenerator(7));
 
-        self::assertTrue($randomNumberGame->guessNumber(4) === 'Higher');
-        self::assertTrue($randomNumberGame->guessNumber(6) === 'Lower');
+        self::assertSame($randomNumberGame->guessNumber(4), 'Higher');
+        self::assertSame($randomNumberGame->guessNumber(8), 'Lower');
     }
 }

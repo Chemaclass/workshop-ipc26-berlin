@@ -6,6 +6,13 @@ namespace Kata;
 
 final class RandomNumberGame
 {
+    private int $answer;
+
+    public function __construct(private StubGenerator $stubGenerator)
+    {
+        $this->answer = $this->stubGenerator->generate();
+    }
+
     public function getRandomNumber(): int
     {
         return rand(1, 10);
@@ -13,15 +20,14 @@ final class RandomNumberGame
 
     public function guessNumber(int $guess): string
     {
-        $answer = 5;
 
-        if ($guess === $answer) {
+        if ($guess === $this->answer) {
             return 'You win!';
         }
-        if ($guess < $answer) {
+        if ($guess < $this->answer) {
             return 'Higher';
         }
-        if ($guess > $answer) {
+        if ($guess > $this->answer) {
             return 'Lower';
         }
 
