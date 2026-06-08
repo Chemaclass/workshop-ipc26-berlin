@@ -15,6 +15,10 @@ final class RockPaperSciccors
             return true;
         }
 
+        if ($player1 === 'scissors' && $player2 === 'rock') {
+            return false;
+        }
+
         return false;
     }
 }
