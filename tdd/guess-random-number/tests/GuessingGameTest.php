@@ -101,4 +101,16 @@ final class GuessingGameTest extends TestCase
         $result = $game->playRound(6);
         self::assertSame('You win!', $result);
     }
+
+    public function test_Guess_Is_Too_High(): void{
+          $mock = $this->createMock(RandomNumberGenerator::class);
+        $mock
+            ->method('generate')
+            ->willReturn(6);
+
+        $game = new GuessingGame($mock);
+        
+        $result = $game->playRound(7);
+        self::assertSame('You guessed too high', $result);
+    }
 }
