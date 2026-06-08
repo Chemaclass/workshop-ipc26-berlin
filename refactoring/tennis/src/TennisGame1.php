@@ -6,12 +6,15 @@ namespace TennisGame;
 
 class TennisGame1 implements TennisGame
 {
+    public const SCORE_0_0 = 0;
+
+    public const SCORE_1_0 = 1;
+
+    public const SCORE_2_2 = 2;
+
     private int $m_score1 = 0;
 
     private int $m_score2 = 0;
-    const SCORE_0_0 = 0;
-    const SCORE_1_0 = 1;
-    const SCORE_2_2 = 2;
 
     public function __construct(
         private string $player1Name,
@@ -28,18 +31,24 @@ class TennisGame1 implements TennisGame
         }
     }
 
+    public function isScoreEqual(): string
+    {
+        return match ($this->m_score1) {
+            0 => 'Love-All',
+            1 => 'Fifteen-All',
+            2 => 'Thirty-All',
+            default => 'Deuce',
+        };
+    }
+
     public function getScore(): string
     {
         $score = '';
         if ($this->m_score1 === $this->m_score2) {
-            return match ($this->m_score1) {
-                0 => 'Love-All',
-                1 => 'Fifteen-All',
-                2 => 'Thirty-All',
-                default => 'Deuce',
-            };
+            return $this->isScoreEqual();
+        }
 
-        } else if ($this->m_score1 >= 4 || $this->m_score2 >= 4) {
+        if ($this->m_score1 >= 4 || $this->m_score2 >= 4) {
             $minusResult = $this->m_score1 - $this->m_score2;
             if ($minusResult === 1) {
                 $score = 'Advantage player1';
