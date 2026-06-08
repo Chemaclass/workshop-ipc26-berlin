@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Parrot;
 
-use Exception;
-
 class Parrot
 {
     private const float MIN_VALUE = 24.0;
@@ -17,6 +15,7 @@ class Parrot
     private const string SQAARK ='Sqaark!';
     private const string BZZZT = 'Bzzzzzz';
     private const string SILENCE='...';
+
     public function __construct(
         private ParrotTypeEnum $type,
         private int $numberOfCoconuts,
@@ -25,9 +24,6 @@ class Parrot
     ) {
     }
 
-    /**
-     * @throws Exception
-     */
     public function getSpeed(): float
     {
         return match ($this->type) {
@@ -49,9 +45,6 @@ class Parrot
     return $params->isNailed ? 0 : $this->getBaseSpeedWith($params->voltage);
     }
 
-    /**
-     * @throws Exception
-     */
     public function getCry(): string
     {
         return match ($this->type) {
