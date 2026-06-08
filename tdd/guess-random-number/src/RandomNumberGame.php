@@ -13,11 +13,6 @@ final class RandomNumberGame
         $this->answer = $this->stubGenerator->generate();
     }
 
-    public function getRandomNumber(): int
-    {
-        return rand(1, 10);
-    }
-
     public function guessNumber(int $guess): string
     {
 

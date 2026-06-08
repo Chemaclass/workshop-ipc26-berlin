@@ -10,13 +10,6 @@ use Kata\StubGenerator;
 
 final class RandomNumberTest extends TestCase
 {
-    public function testGetRandomNumber(): void
-    {
-        $randomNumberGame = new RandomNumberGame(new StubGenerator(5));
-
-        $result = $randomNumberGame->getRandomNumber();
-        self::assertIsInt($result);
-    }
 
     public function testGuessNumber(): void
     {
