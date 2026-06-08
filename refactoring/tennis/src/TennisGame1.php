@@ -6,9 +6,9 @@ namespace TennisGame;
 
 class TennisGame1 implements TennisGame
 {
-    private int $m_score1 = 0;
+    private int $score1 = 0;
 
-    private int $m_score2 = 0;
+    private int $score2 = 0;
 
     public function __construct(
         private string $player1Name,
@@ -19,24 +19,24 @@ class TennisGame1 implements TennisGame
     public function wonPoint(string $playerName): void
     {
         if ($playerName === 'player1') {
-            $this->m_score1++;
+            $this->score1++;
         } else {
-            $this->m_score2++;
+            $this->score2++;
         }
     }
 
     public function getScore(): string
     {
         $score = '';
-        if ($this->m_score1 === $this->m_score2) {
-            $score = match ($this->m_score1) {
+        if ($this->score1 === $this->score2) {
+            $score = match ($this->score1) {
                 0 => 'Love-All',
                 1 => 'Fifteen-All',
                 2 => 'Thirty-All',
                 default => 'Deuce',
             };
-        } elseif ($this->m_score1 >= 4 || $this->m_score2 >= 4) {
-            $minusResult = $this->m_score1 - $this->m_score2;
+        } elseif ($this->score1 >= 4 || $this->score2 >= 4) {
+            $minusResult = $this->score1 - $this->score2;
             if ($minusResult === 1) {
                 $score = 'Advantage player1';
             } elseif ($minusResult === -1) {
@@ -49,10 +49,10 @@ class TennisGame1 implements TennisGame
         } else {
             for ($i = 1; $i < 3; $i++) {
                 if ($i === 1) {
-                    $tempScore = $this->m_score1;
+                    $tempScore = $this->score1;
                 } else {
                     $score .= '-';
-                    $tempScore = $this->m_score2;
+                    $tempScore = $this->score2;
                 }
                 switch ($tempScore) {
                     case 0:
