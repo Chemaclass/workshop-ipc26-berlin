@@ -5,23 +5,36 @@ declare(strict_types=1);
 namespace KataTests;
 
 use Kata\ChangeMe;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 final class ChangeMeTest extends TestCase
 {
 
+public static function TestCaseProvider():array{
+    return [
+        'me rock oppo scissors'=>[
+            'myInput'=>'Rock',
+            'opponentInput'=>'Scissors',
+            'expectedResult'=>true
+            ],
+        'me scissors oppo rock'=>[
+            'myInput'=>'Scissors',
+            'opponentInput'=>'Rock',
+            'expectedResult'=>false
+            ],
+        ];
+}
 
-    public function test_rock_beats_scissors(): void{
+#[DataProvider('TestCaseProvider')]
+    public function test_rock_beats_scissors(string $myInput,
+    string $opponentInput,
+    bool $expectedResult): void{
         $changeMe = new ChangeMe();
         
-        
-        self::assertTrue($changeMe->changeMe('Rock','Scissors'));
+        $result = $changeMe->changeMe($myInput,$opponentInput);
+        self::assertSame($expectedResult, $result);
     }
 
-        public function test_scissors_loses_rock(): void{
-        $changeMe = new ChangeMe();
-        
-        
-        self::assertFalse($changeMe->changeMe('Scissors','Rock'));
-    }
+
 }
