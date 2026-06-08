@@ -7,10 +7,10 @@ namespace Parrot;
 abstract class Parrot implements ParrotInterface
 {
     public function __construct(
-        private ParrotTypeEnum $type,
-        private int $numberOfCoconuts,
-        private float $voltage,
-        private bool $isNailed
+        protected ParrotTypeEnum $type,
+        protected int $numberOfCoconuts,
+        protected float $voltage,
+        protected bool $isNailed
     ) {
     }
 
@@ -45,7 +45,7 @@ abstract class Parrot implements ParrotInterface
         };
     }
 
-    private function getBaseSpeedWith(float $voltage): float
+    protected function getBaseSpeedWith(float $voltage): float
     {
         return min(self::MIN_BASE_SPEED, $voltage * $this->getBaseSpeed());
     }
@@ -55,7 +55,7 @@ abstract class Parrot implements ParrotInterface
         return self::LOAD_FACTOR;
     }
 
-    private function getBaseSpeed(): float
+    protected function getBaseSpeed(): float
     {
         return self::BASE_SPEED;
     }
