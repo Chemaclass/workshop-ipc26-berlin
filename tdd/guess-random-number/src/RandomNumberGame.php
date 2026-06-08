@@ -16,7 +16,14 @@ final class RandomNumberGame
         if ($guess === 5) {
             return 'You win!';
         }
+        if ($guess < 5) {
+            return 'Higher';
+        }
+        if ($guess > 5) {
+            return 'Lower';
+        }
 
         return 'You lose!';
     }
+
 }
