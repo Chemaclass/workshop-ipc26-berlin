@@ -58,7 +58,7 @@ class TennisGame1 implements TennisGame
     }
 
 private function handleCaseDifferentScore():string{
-    
+
     return $this->handleIntToStringScore($this->player1Score)
         . '-'
         . $this->handleIntToStringScore($this->player2Score);
@@ -66,21 +66,13 @@ private function handleCaseDifferentScore():string{
 }
 
     private function handleIntToStringScore(int $tempScore):string{
-        $score = '';
-        switch ($tempScore) {
-            case 0:
-                $score .= 'Love';
-                break;
-            case 1:
-                $score .= 'Fifteen';
-                break;
-            case 2:
-                $score .= 'Thirty';
-                break;
-            case 3:
-                $score .= 'Forty';
-                break;
-        }
-        return $score;
+
+        return match ($tempScore) {
+            0 => 'Love',
+            1 => 'Fifteen',
+            2 => 'Thirty',
+            3 => 'Forty',
+            default => throw new Exception('Should be unreachable'),
+        };
     }
 }
