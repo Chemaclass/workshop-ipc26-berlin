@@ -13,6 +13,10 @@ final class ChangeMeTest extends TestCase
     {
         $changeMe = new ChangeMe();
 
-        self::assertTrue($changeMe->getRandomNumber());
+        $result = $changeMe->getRandomNumber();
+        self::assertIsInt($result);
+
     }
+
+
 }

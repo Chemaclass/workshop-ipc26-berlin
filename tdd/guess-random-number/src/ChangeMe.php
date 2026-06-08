@@ -6,8 +6,8 @@ namespace Kata;
 
 final class ChangeMe
 {
-    public function getRandomNumber(): bool
+    public function getRandomNumber(): int
     {
-        return true;
+        return 1;
     }
 }
