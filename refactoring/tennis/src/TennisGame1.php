@@ -26,33 +26,22 @@ class TennisGame1 implements TennisGame
 
     public function getScore(): string
     {
-        $score = '';
         if ($this->player1Score === $this->player2Score) {
             return $this->handleCaseSameScore();
         } elseif ($this->player1Score >= 4 || $this->player2Score >= 4) {
             return $this->handleCaseAdvantage();
         } else {
-
-            for ($i = 1; $i < 3; $i++) {
-                if ($i === 1) {
-                    $tempScore = $this->player1Score;
-                } else {
-                    $score .= '-';
-                    $tempScore = $this->player2Score;
-                }
-                $score .= $this->handleIntToStringScore($tempScore);
-            }
+            return $this->handleCaseDifferentScore();
         }
-        return $score;
     }
 
     private function handleCaseSameScore():string{
         return match ($this->player1Score) {
-                0 => 'Love-All',
-                1 => 'Fifteen-All',
-                2 => 'Thirty-All',
-                default => 'Deuce',
-            };
+            0 => 'Love-All',
+            1 => 'Fifteen-All',
+            2 => 'Thirty-All',
+            default => 'Deuce',
+        };
     }
 
     private function handleCaseAdvantage():string{
@@ -66,8 +55,24 @@ class TennisGame1 implements TennisGame
         } else {
             return 'Win for player2';
         }
-
     }
+
+private function handleCaseDifferentScore():string{
+    $score='';    
+    
+    for ($i = 1; $i < 3; $i++) {
+        if ($i === 1) {
+            $tempScore = $this->player1Score;
+        } else {
+            $score .= '-';
+            $tempScore = $this->player2Score;
+        }
+        $score .= $this->handleIntToStringScore($tempScore);
+    }
+
+    return $score;
+}
+
     private function handleIntToStringScore(int $tempScore):string{
         $score = '';
         switch ($tempScore) {
