@@ -20,13 +20,18 @@ final class GuessingGameTest extends TestCase
         return $mock;
     }
 
+    private function setupGame(RandomNumberGenerator $generator,
+    int $tries): GuessingGame{
+        return new GuessingGame($generator, $tries);
+    }
+
     public function test_initialization(): void
     {
         $randomNumberGenerator = $this->createMock(RandomNumberGenerator::class);
         $randomNumberGenerator->method('generate')->willReturn(5);
         $tries = 5;
 
-        $game = new GuessingGame($randomNumberGenerator, $tries);
+        $game = $this->setupGame($randomNumberGenerator, $tries);
 
         self::assertSame(5, $game->getSystemNumber());
         self::assertSame(5, $game->getTriesRemaining());
@@ -36,7 +41,7 @@ final class GuessingGameTest extends TestCase
     {
         $mock = $this->setupDependency(5);
 
-        $game = new GuessingGame($mock);
+        $game = $this->setupGame($mock, 5);
 
         $result = $game->playRound(5);
 
@@ -47,7 +52,7 @@ final class GuessingGameTest extends TestCase
     {
         $mock = $this->setupDependency(6);
 
-        $game = new GuessingGame($mock);
+       $game = $this->setupGame($mock, 5);
 
         $result = $game->playRound(5);
 
@@ -59,7 +64,7 @@ final class GuessingGameTest extends TestCase
     {
         $mock = $this->setupDependency(6);
 
-        $game = new GuessingGame($mock);
+       $game = $this->setupGame($mock, 3);
 
         $result = $game->playRound(5);
         self::assertSame('You guessed too low', $result);
@@ -75,7 +80,7 @@ final class GuessingGameTest extends TestCase
     {
         $mock = $this->setupDependency(6);
 
-        $game = new GuessingGame($mock);
+        $game = $this->setupGame($mock, 5);
 
         $result = $game->playRound(5);
         self::assertSame('You guessed too low', $result);
@@ -88,7 +93,7 @@ final class GuessingGameTest extends TestCase
     {
         $mock = $this->setupDependency(6);
 
-        $game = new GuessingGame($mock);
+        $game = $this->setupGame($mock, 5);
 
         $result = $game->playRound(5);
         self::assertSame('You guessed too low', $result);
@@ -104,7 +109,7 @@ final class GuessingGameTest extends TestCase
     {
         $mock = $this->setupDependency(6);
 
-        $game = new GuessingGame($mock);
+       $game = $this->setupGame($mock, 5);
 
         $result = $game->playRound(7);
         self::assertSame('You guessed too high', $result);
