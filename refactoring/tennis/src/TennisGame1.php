@@ -46,15 +46,14 @@ class TennisGame1 implements TennisGame
 
     private function handleCaseAdvantage():string{
         $minusResult = $this->player1Score - $this->player2Score;
-        if ($minusResult === 1) {
-            return 'Advantage player1';
-        } elseif ($minusResult === -1) {
-            return 'Advantage player2';
-        } elseif ($minusResult >= 2) {
-            return 'Win for player1';
-        } else {
-            return 'Win for player2';
-        }
+
+       return match (true) {
+            $minusResult === 1 => 'Advantage player1',
+            $minusResult === -1 => 'Advantage player2',
+            $minusResult >= 2 => 'Win for player1',
+            default => 'Win for player2',
+        };
+
     }
 
 private function handleCaseDifferentScore():string{
