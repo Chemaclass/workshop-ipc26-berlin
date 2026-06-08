@@ -13,7 +13,7 @@ class EuropeanParrot extends AbstractParrot
      */
     public function getSpeed(): float
     {
-        return $this->getBaseSpeed();
+        return $this->baseSpeed;
     }
 
     /**

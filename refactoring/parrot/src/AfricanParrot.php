@@ -13,7 +13,7 @@ class AfricanParrot extends AbstractParrot
      */
     public function getSpeed(): float
     {
-        return max(0, $this->getBaseSpeed() - $this->getLoadFactor() * $this->numberOfCoconuts);
+        return max(0, $this->baseSpeed - $this->getLoadFactor() * $this->numberOfCoconuts);
     }
 
     /**

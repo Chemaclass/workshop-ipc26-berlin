@@ -9,7 +9,9 @@ abstract class AbstractParrot
     public function __construct(
         protected int $numberOfCoconuts,
         protected float $voltage,
-        protected bool $isNailed
+        protected bool $isNailed,
+        protected float $loadFactor = 9.0,
+        protected float $baseSpeed = 12.0,
     ) {}
 
     abstract public function getSpeed(): float;
@@ -18,16 +20,16 @@ abstract class AbstractParrot
 
     protected function getBaseSpeedWith(float $voltage): float
     {
-        return min(24.0, $voltage * $this->getBaseSpeed());
+        return min($this->baseSpeed * 2, $voltage * $this->baseSpeed);
     }
 
     protected function getLoadFactor(): float
     {
-        return 9.0;
+        return $this->loadFactor;
     }
 
     protected function getBaseSpeed(): float
     {
-        return 12.0;
+        return $this->baseSpeed;
     }
 }
