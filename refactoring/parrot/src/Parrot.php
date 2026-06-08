@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Parrot;
 
 use Exception;
+use Parrot\ParrotTypeEnum;
 
 class Parrot
 {
@@ -12,11 +13,12 @@ class Parrot
         /**
          * @var int ParrotTypeEnum
          */
-        private int $type,
-        private int $numberOfCoconuts,
-        private float $voltage,
-        private bool $isNailed
-    ) {
+        private ParrotTypeEnum $type,
+        private int            $numberOfCoconuts,
+        private float          $voltage,
+        private bool           $isNailed
+    )
+    {
     }
 
     /**
@@ -28,7 +30,7 @@ class Parrot
             ParrotTypeEnum::EUROPEAN => $this->getBaseSpeed(),
             ParrotTypeEnum::AFRICAN => max(0, $this->getBaseSpeed() - $this->getLoadFactor() * $this->numberOfCoconuts),
             ParrotTypeEnum::NORWEGIAN_BLUE => $this->isNailed ? 0 : $this->getBaseSpeedWith($this->voltage),
-            default => throw new Exception('Should be unreachable'),
+            default => throw new Exception('Should be unreachable')
         };
     }
 
