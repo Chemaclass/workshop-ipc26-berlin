@@ -18,6 +18,9 @@ final class RandomGeneratorGame
     public function play(int $guessedNumber): string
     {
         $this->attemptsCounter++;
+        if ($this->attemptsCounter > self::MAX_ATTEMPTS) {
+            return RandomGeneratorGameResult::LOSE->value;
+        }
 
         if ($guessedNumber > self::WINNER_NUMBER) {
             return RandomGeneratorGameResult::LOWER->value;
@@ -25,10 +28,6 @@ final class RandomGeneratorGame
 
         if ($guessedNumber < self::WINNER_NUMBER) {
             return RandomGeneratorGameResult::HIGHER->value;
-        }
-
-        if ($this->attemptsCounter >= self::MAX_ATTEMPTS) {
-            return RandomGeneratorGameResult::LOSE->value;
         }
 
         return RandomGeneratorGameResult::WIN->value;

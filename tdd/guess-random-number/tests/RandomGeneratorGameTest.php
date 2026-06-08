@@ -55,8 +55,9 @@ final class RandomGeneratorGameTest extends TestCase
     {
         $randomGeneratorGame = new RandomGeneratorGame();
 
-        self::assertSame(RandomGeneratorGameResult::LOWER->value, $randomGeneratorGame->play(5));
-        self::assertSame(RandomGeneratorGameResult::LOWER->value, $randomGeneratorGame->play(4));
-        self::assertSame(RandomGeneratorGameResult::LOSE->value, $randomGeneratorGame->play(3));
+        self::assertSame(RandomGeneratorGameResult::LOWER->value, $randomGeneratorGame->play(7));
+        self::assertSame(RandomGeneratorGameResult::LOWER->value, $randomGeneratorGame->play(6));
+        self::assertSame(RandomGeneratorGameResult::HIGHER->value, $randomGeneratorGame->play(1));
+        self::assertSame(RandomGeneratorGameResult::LOSE->value, $randomGeneratorGame->play(2));
     }
 }
