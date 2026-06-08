@@ -16,4 +16,6 @@ enum ParrotTypeEnum: int
     case AFRICAN = 1;
 
     case NORWEGIAN_BLUE = 2;
+
+    case UNKNOWN = -1;
 }
