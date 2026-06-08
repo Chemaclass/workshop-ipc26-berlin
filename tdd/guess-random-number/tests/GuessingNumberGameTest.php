@@ -9,7 +9,7 @@ use Kata\RandomNumberGenerator;
 use Kata\RandomNumberGeneratorInterface;
 use PHPUnit\Framework\TestCase;
 
-final class ChangeMeTest extends TestCase
+final class GuessingNumberGameTest extends TestCase
 {
     private RandomNumberGeneratorInterface $randomNumberGenerator;
 
@@ -30,7 +30,7 @@ final class ChangeMeTest extends TestCase
         $game = new GuessingNumberGame($this->randomNumberGenerator);
 
         self::assertSame(
-            true,
+            'You win!',
             $game->guessNumber(5),
         );
     }
@@ -39,17 +39,27 @@ final class ChangeMeTest extends TestCase
     {
         $game = new GuessingNumberGame($this->randomNumberGenerator);
 
-        self::assertSame(false, $game->guessNumber(10));
-        self::assertSame(false, $game->guessNumber(3));
-        self::assertSame(true, $game->guessNumber(5));
+        self::assertSame('Lower', $game->guessNumber(10));
+        self::assertSame('Higher', $game->guessNumber(3));
+        self::assertSame('You win!', $game->guessNumber(5));
+    }
+
+    public function test_player_loses_after_three_guesses(): void
+    {
+        $game = new GuessingNumberGame($this->randomNumberGenerator);
+
+        self::assertSame('Higher', $game->guessNumber(1));
+        self::assertSame('Lower', $game->guessNumber(10));
+        self::assertSame('You lose! The number was 5', $game->guessNumber(3));
     }
 
     public function test_player_loses_after_multiple_guesses(): void
     {
         $game = new GuessingNumberGame($this->randomNumberGenerator);
 
-        self::assertSame(false, $game->guessNumber(1));
-        self::assertSame(false, $game->guessNumber(10));
-        self::assertSame(false, $game->guessNumber(3));
+        self::assertSame('Higher', $game->guessNumber(1));
+        self::assertSame('Lower', $game->guessNumber(10));
+        self::assertSame('You lose! The number was 5', $game->guessNumber(3));
+        self::assertSame('You lose! The number was 5', $game->guessNumber(5));
     }
 }
