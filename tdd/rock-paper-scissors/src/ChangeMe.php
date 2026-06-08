@@ -11,6 +11,11 @@ final class ChangeMe
         if($myInput === 'Rock' && $opponentInput === 'Scissors'){
             return true;
         }
+
+         if($myInput === 'Scissors' && $opponentInput === 'Rock'){
+            return false;
+        }
+
     return false;
     }
 }

@@ -17,4 +17,11 @@ final class ChangeMeTest extends TestCase
         
         self::assertTrue($changeMe->changeMe('Rock','Scissors'));
     }
+
+        public function test_scissors_loses_rock(): void{
+        $changeMe = new ChangeMe();
+        
+        
+        self::assertFalse($changeMe->changeMe('Scissors','Rock'));
+    }
 }
