@@ -8,6 +8,6 @@ final class ChangeMe
 {
     public function getRandomNumber(): int
     {
-        return 1;
+        return rand(1, 10);
     }
 }
