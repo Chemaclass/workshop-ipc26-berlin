@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Parrot;
 
-use Exception;
-
 class Parrot
 {
     public function __construct(
@@ -16,9 +14,6 @@ class Parrot
     ) {
     }
 
-    /**
-     * @throws Exception
-     */
     public function getSpeed(): float
     {
         return match ($this->type) {
@@ -28,16 +23,12 @@ class Parrot
         };
     }
 
-    /**
-     * @throws Exception
-     */
     public function getCry(): string
     {
         return match ($this->type) {
             ParrotTypeEnum::EUROPEAN => 'Sqoork!',
             ParrotTypeEnum::AFRICAN => 'Sqaark!',
             ParrotTypeEnum::NORWEGIAN_BLUE => $this->voltage > 0 ? 'Bzzzzzz' : '...',
-            default => throw new Exception('Should be unreachable'),
         };
     }
 
