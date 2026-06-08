@@ -29,46 +29,58 @@ class TennisGame1 implements TennisGame
         };
     }
 
+    public function advantageOrWin(): string
+    {
+        $minusResult = $this->m_score1 - $this->m_score2;
+
+        if ($minusResult === 1) {
+            return 'Advantage player1';
+        }
+        if ($minusResult === -1) {
+            return 'Advantage player2';
+        }
+        if ($minusResult >= 2) {
+            return 'Win for player1';
+        }
+
+        return 'Win for player2';
+    }
+
     public function getScore(): string
     {
         $score = '';
+
         if ($this->m_score1 === $this->m_score2) {
             return $this->isScoreEquals();
-        } elseif ($this->m_score1 >= 4 || $this->m_score2 >= 4) {
-            $minusResult = $this->m_score1 - $this->m_score2;
-            if ($minusResult === 1) {
-                $score = 'Advantage player1';
-            } elseif ($minusResult === -1) {
-                $score = 'Advantage player2';
-            } elseif ($minusResult >= 2) {
-                $score = 'Win for player1';
+        }
+
+        if ($this->m_score1 >= 4 || $this->m_score2 >= 4) {
+            return $this->advantageOrWin();
+        }
+
+        for ($i = 1; $i < 3; $i++) {
+            if ($i === 1) {
+                $tempScore = $this->m_score1;
             } else {
-                $score = 'Win for player2';
+                $score .= '-';
+                $tempScore = $this->m_score2;
             }
-        } else {
-            for ($i = 1; $i < 3; $i++) {
-                if ($i === 1) {
-                    $tempScore = $this->m_score1;
-                } else {
-                    $score .= '-';
-                    $tempScore = $this->m_score2;
-                }
-                switch ($tempScore) {
-                    case 0:
-                        $score .= 'Love';
-                        break;
-                    case 1:
-                        $score .= 'Fifteen';
-                        break;
-                    case 2:
-                        $score .= 'Thirty';
-                        break;
-                    case 3:
-                        $score .= 'Forty';
-                        break;
-                }
+            switch ($tempScore) {
+                case 0:
+                    $score .= 'Love';
+                    break;
+                case 1:
+                    $score .= 'Fifteen';
+                    break;
+                case 2:
+                    $score .= 'Thirty';
+                    break;
+                case 3:
+                    $score .= 'Forty';
+                    break;
             }
         }
+
         return $score;
     }
 }
