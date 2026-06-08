@@ -18,17 +18,11 @@ class AfricanParrot extends AbstractParrot
         parent::__construct($voltage, $isNailed, $loadFactor, $baseSpeed);
     }
 
-    /**
-     * @throws Exception
-     */
     public function getSpeed(): float
     {
         return max(0, $this->baseSpeed - $this->loadFactor * $this->numberOfCoconuts);
     }
 
-    /**
-     * @throws Exception
-     */
     public function getCry(): string
     {
         return 'Sqaark!';
