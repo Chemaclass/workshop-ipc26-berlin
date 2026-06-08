@@ -29,12 +29,9 @@ class TennisGame1 implements TennisGame
     {
         $score = '';
         if ($this->score1 === $this->score2) {
-            $score = match ($this->score1) {
-                0 => 'Love-All',
-                1 => 'Fifteen-All',
-                2 => 'Thirty-All',
-                default => 'Deuce',
-            };
+            $score = $this->score1 >= 3
+                ? 'Deuce'
+                : $this->pointName($this->score1) . '-All';
         } elseif ($this->score1 >= 4 || $this->score2 >= 4) {
             $minusResult = $this->score1 - $this->score2;
             if ($minusResult === 1) {
