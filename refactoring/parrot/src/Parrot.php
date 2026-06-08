@@ -9,10 +9,7 @@ use Exception;
 class Parrot
 {
     public function __construct(
-        /**
-         * @var int ParrotTypeEnum
-         */
-        private int $type,
+        private ParrotTypeEnum $type,
         private int $numberOfCoconuts,
         private float $voltage,
         private bool $isNailed
@@ -28,7 +25,6 @@ class Parrot
             ParrotTypeEnum::EUROPEAN => $this->getBaseSpeed(),
             ParrotTypeEnum::AFRICAN => max(0, $this->getBaseSpeed() - $this->getLoadFactor() * $this->numberOfCoconuts),
             ParrotTypeEnum::NORWEGIAN_BLUE => $this->isNailed ? 0 : $this->getBaseSpeedWith($this->voltage),
-            default => throw new Exception('Should be unreachable'),
         };
     }
 
