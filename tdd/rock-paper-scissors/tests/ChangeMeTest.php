@@ -10,32 +10,31 @@ use PHPUnit\Framework\TestCase;
 
 final class ChangeMeTest extends TestCase
 {
-
-public static function TestCaseProvider():array{
-    return [
-        'me rock oppo scissors'=>[
-            'myInput'=>'Rock',
-            'opponentInput'=>'Scissors',
-            'expectedResult'=>true
+    public static function TestCaseProvider(): array
+    {
+        return [
+            'me rock oppo scissors' => [
+                'myInput' => 'Rock',
+                'opponentInput' => 'Scissors',
+                'expectedResult' => true,
             ],
-        'me scissors oppo rock'=>[
-            'myInput'=>'Scissors',
-            'opponentInput'=>'Rock',
-            'expectedResult'=>false
+            'me scissors oppo rock' => [
+                'myInput' => 'Scissors',
+                'opponentInput' => 'Rock',
+                'expectedResult' => false,
             ],
         ];
-}
-
-#[DataProvider('TestCaseProvider')]
-    public function test_rock_and_scissors(string $myInput,
-        string $opponentInput,
-        bool $expectedResult): void{
-            
-        $changeMe = new ChangeMe();
-        
-        $result = $changeMe->changeMe($myInput,$opponentInput);
-        self::assertSame($expectedResult, $result);
     }
 
+    #[DataProvider('TestCaseProvider')]
+    public function testRockAndScissors(
+        string $myInput,
+        string $opponentInput,
+        bool $expectedResult
+    ): void {
+        $changeMe = new ChangeMe();
 
+        $result = $changeMe->changeMe($myInput, $opponentInput);
+        self::assertSame($expectedResult, $result);
+    }
 }
