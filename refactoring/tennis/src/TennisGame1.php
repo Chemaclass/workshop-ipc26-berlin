@@ -8,39 +8,35 @@ class TennisGame1 implements TennisGame
 {
     const SCORE_NAMES = ['Love', 'Fifteen', 'Thirty', 'Forty'];
 
-    private int $m_score1 = 0;
+    private int $player1score = 0;
 
-    private int $m_score2 = 0;
-
-    public function __construct(
-        private string $player1Name,
-        private string $player2Name
-    ) {
-    }
+    private int $player2score = 0;
 
     public function wonPoint(string $playerName): void
     {
         if ($playerName === 'player1') {
-            $this->m_score1++;
+            $this->player1score++;
         } else {
-            $this->m_score2++;
+            $this->player2score++;
         }
     }
 
     public function getScore(): string
     {
-        if ($this->m_score1 === $this->m_score2) {
+        if ($this->player1score === $this->player2score) {
             return $this->getEqualScoreName();
-        } elseif ($this->m_score1 >= 4 || $this->m_score2 >= 4) {
-            return $this->getEndGame();
-        } else {
-            return $this->getBaseGame();
         }
+
+        if ($this->player1score >= 4 || $this->player2score >= 4) {
+            return $this->getEndGame();
+        }
+
+        return $this->getBaseGame();
     }
 
     private function getEqualScoreName(): string
     {
-        return match ($this->m_score1) {
+        return match ($this->player1score) {
             0 => 'Love-All',
             1 => 'Fifteen-All',
             2 => 'Thirty-All',
@@ -50,13 +46,17 @@ class TennisGame1 implements TennisGame
 
     public function getEndGame(): string
     {
-        $difference = $this->m_score1 - $this->m_score2;
+        $difference = $this->player1score - $this->player2score;
 
         if ($difference === 1) {
             return 'Advantage player1';
-        } elseif ($difference === -1) {
+        }
+
+        if ($difference === -1) {
             return 'Advantage player2';
-        } elseif ($difference >= 2) {
+        }
+
+        if ($difference >= 2) {
             return 'Win for player1';
         }
 
@@ -65,6 +65,6 @@ class TennisGame1 implements TennisGame
 
     public function getBaseGame(): string
     {
-        return self::SCORE_NAMES[$this->m_score1] . '-' . self::SCORE_NAMES[$this->m_score2];
+        return self::SCORE_NAMES[$this->player1score] . '-' . self::SCORE_NAMES[$this->player2score];
     }
 }
