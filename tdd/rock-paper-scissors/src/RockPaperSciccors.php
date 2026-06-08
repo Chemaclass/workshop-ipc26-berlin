@@ -9,20 +9,26 @@ final class RockPaperSciccors
     /**
      * @returns true if player 1 wins, false if player 2 wins
      */
-    public function play(string $player1, string $player2): bool
+    public function play(string $player1, string $player2): PlayResult
     {
         if ($player1 === 'rock' && $player2 === 'scissors') {
-            return true;
+            return PlayResult::WIN;
         }
 
         if ($player1 === 'paper' && $player2 === 'rock') {
-            return true;
+            return PlayResult::WIN;
         }
 
         if ($player1 === 'scissors' && $player2 === 'paper') {
-            return true;
+            return PlayResult::WIN;
         }
 
-        return false;
+        return PlayResult::LOOSE;
     }
+}
+
+enum PlayResult: int {
+    case WIN = 1;
+    case LOOSE = 2;
+    case DRAW = 3;
 }
